@@ -15,9 +15,15 @@ const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base('appEkp
 
 // Middleware x402 (Coinbase CDP Facilitator logic)
 const requirePayment = (req, res, next) => {
+    const rapidApiHeader = req.headers['x-rapidapi-secret'];
+    const expectedRapidApiKey = process.env.RAPIDAPI_SECRET;
+
+    if (rapidApiHeader && rapidApiHeader === expectedRapidApiKey) {
+        return next();
+    }
+
     const paymentHeader = req.headers['x-cdp-payment-proof']; 
     if (!paymentHeader) {
-        // HTTP 402 Payment Required come da architettura
         return res.status(402).json({
             error: "Payment Required",
             amount: "0.01",
@@ -27,9 +33,9 @@ const requirePayment = (req, res, next) => {
             message: "Send 0.01 USDC on Base to access this subculture's curated dataset."
         });
     }
-    // Qui andrà la validazione effettiva dell'hash della transazione tramite CDP
     next();
 };
+
 
 // ENDPOINT 1: Health (Gratuito)
 app.get('/api/health', (req, res) => {
