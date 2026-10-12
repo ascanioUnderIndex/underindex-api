@@ -9,6 +9,7 @@ import { HTTPFacilitatorClient } from "@x402/core/server";
 import { declareDiscoveryExtension } from "@x402/extensions/bazaar";
 import { createCdpFacilitatorClient } from "@coinbase/cdp-sdk/x402";
 import { createDataset } from "./dataset.js";
+import { buildOpenApi, EXAMPLE_RECORD, RECORD_DESCRIPTION } from "./openapi.js";
 
 // ---------------------------------------------------------------------------
 // Config
@@ -94,6 +95,18 @@ app.get("/api/catalog", (req, res) => {
   });
 });
 
+// FREE: discovery document for registries and agents (lists the routes, the price and the valid slugs)
+app.get("/openapi.json", (req, res) => {
+  if (!dataset.ready) return res.status(503).json({ error: "Dataset loading, retry shortly" });
+  res.json(
+    buildOpenApi({
+      origin: `${req.protocol}://${req.get("host")}`,
+      price: PRICE,
+      slugs: dataset.catalog().map((c) => c.slug),
+    }),
+  );
+});
+
 // FREE pre-check, runs BEFORE the paywall: an agent never gets asked to pay for a name that doesn't exist.
 app.get("/api/subculture/:name", (req, res, next) => {
   if (!dataset.ready) return res.status(503).json({ error: "Dataset loading, retry shortly" });
@@ -122,31 +135,18 @@ const x402 = paymentMiddleware(
   {
     "GET /api/subculture/:name": {
       accepts: [{ scheme: "exact", price: PRICE, network: network.caip2, payTo: PAY_TO }],
-      description:
-        "UnderIndex: verified grounding data for one niche fashion subculture (era, key brands, iconic items, " +
-        "music, where to buy, price range, anti-hallucination notes). Free catalog of slugs at /api/catalog.",
+      description: RECORD_DESCRIPTION,
       mimeType: "application/json",
       extensions: {
         ...declareDiscoveryExtension({
-          pathParams: { name: "acubi-style" },
+          pathParams: { name: "goth-ninja" },
           pathParamsSchema: {
             properties: {
-              name: { type: "string", description: "Subculture slug from GET /api/catalog, e.g. acubi-style, opium, ura-hara-harajuku-90s" },
+              name: { type: "string", description: "Subculture slug from GET /api/catalog, e.g. goth-ninja, opium, ura-hara-harajuku-90s" },
             },
             required: ["name"],
           },
-          output: {
-            example: {
-              Name: "Acubi Style",
-              Years: "2020s",
-              KeyBrands: "…",
-              IconicItems: "…",
-              WhereToBuy: "…",
-              PriceRange: "…",
-              Notes: "WARNING: …",
-              dataset_version: "3f9a1c0b7e2d",
-            },
-          },
+          output: { example: EXAMPLE_RECORD },
         }),
       },
     },
