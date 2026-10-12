@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { createDataset, slugify } from "./dataset.js";
+import { createDataset, slugify, toPayload } from "./dataset.js";
 
 const rec = (fields) => ({ get: (k) => fields[k] });
 const quiet = { log() {}, error() {} };
@@ -51,4 +51,10 @@ test("not ready until first successful load", async () => {
   const ds = createDataset(async () => { throw new Error("down"); }, { refreshMs: 0, log: quiet });
   await ds.start();
   assert.equal(ds.ready, false);
+});
+
+test("empty list fields come back as [] instead of missing", () => {
+  const p = toPayload(rec({ Name: "Quiet Luxury", "Key Brands": ["The Row"] }));
+  assert.deepEqual(p.VideoGames, []);
+  assert.deepEqual(p.KeyBrands, ["The Row"]);
 });

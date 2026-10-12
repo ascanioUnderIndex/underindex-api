@@ -17,18 +17,21 @@ export function slugify(name) {
     .replace(/^-+|-+$/g, "");
 }
 
-/** Map an Airtable-shaped record (anything with .get(field)) to the public payload. */
+/**
+ * Map an Airtable-shaped record (anything with .get(field)) to the public payload.
+ * Airtable omits empty fields, so list fields fall back to [] to keep the shape stable.
+ */
 export function toPayload(record) {
   return {
     Name: record.get("Name"),
     Years: record.get("Years"),
     Description: record.get("Description"),
-    KeyBrands: record.get("Key Brands"),
-    IconicItems: record.get("Iconic Items"),
-    MusicGenre: record.get("Music Genre"),
-    Artists: record.get("Artists"),
-    VideoGames: record.get("Video Games"),
-    WhereToBuy: record.get("Where to Buy"),
+    KeyBrands: record.get("Key Brands") ?? [],
+    IconicItems: record.get("Iconic Items") ?? [],
+    MusicGenre: record.get("Music Genre") ?? [],
+    Artists: record.get("Artists") ?? [],
+    VideoGames: record.get("Video Games") ?? [],
+    WhereToBuy: record.get("Where to Buy") ?? [],
     PriceRange: record.get("Price Range"),
     Notes: record.get("Notes"),
   };
