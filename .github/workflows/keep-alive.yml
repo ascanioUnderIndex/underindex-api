@@ -1,0 +1,15 @@
+name: Keep Render awake
+
+# Render's free plan stops the service after 15 minutes without traffic.
+# Hitting the free, in-memory catalog endpoint keeps it warm for paying agents.
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping the catalog endpoint
+        run: curl -fsS --retry 3 --max-time 90 -o /dev/null https://underindex-api.onrender.com/api/catalog
