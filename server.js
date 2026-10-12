@@ -55,6 +55,8 @@ const dataset = createDataset(
 // App
 // ---------------------------------------------------------------------------
 const app = express();
+// Render terminates TLS at its proxy; trust X-Forwarded-Proto so URLs come out as https.
+app.set("trust proxy", true);
 app.use(
   cors({
     // Browser-based agents must be able to read the x402 v2 headers.
