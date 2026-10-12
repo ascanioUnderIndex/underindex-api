@@ -131,25 +131,23 @@ function isRapidApi(req) {
 // PAID: x402 v2. The middleware answers 402 + PAYMENT-REQUIRED, verifies the client's
 // PAYMENT-SIGNATURE with the facilitator, runs the handler, and settles only if the
 // handler responds with status < 400.
+const paidRoute = (discovery) => ({
+  accepts: [{ scheme: "exact", price: PRICE, network: network.caip2, payTo: PAY_TO }],
+  description: RECORD_DESCRIPTION,
+  mimeType: "application/json",
+  extensions: { ...declareDiscoveryExtension({ ...discovery, output: { example: EXAMPLE_RECORD } }) },
+});
+const slugSchema = {
+  properties: {
+    name: { type: "string", description: "Subculture slug from GET /api/catalog, e.g. goth-ninja, opium, ura-hara-harajuku-90s" },
+  },
+  required: ["name"],
+};
 const x402 = paymentMiddleware(
   {
-    "GET /api/subculture/:name": {
-      accepts: [{ scheme: "exact", price: PRICE, network: network.caip2, payTo: PAY_TO }],
-      description: RECORD_DESCRIPTION,
-      mimeType: "application/json",
-      extensions: {
-        ...declareDiscoveryExtension({
-          pathParams: { name: "goth-ninja" },
-          pathParamsSchema: {
-            properties: {
-              name: { type: "string", description: "Subculture slug from GET /api/catalog, e.g. goth-ninja, opium, ura-hara-harajuku-90s" },
-            },
-            required: ["name"],
-          },
-          output: { example: EXAMPLE_RECORD },
-        }),
-      },
-    },
+    "GET /api/subculture/:name": paidRoute({ pathParams: { name: "goth-ninja" }, pathParamsSchema: slugSchema }),
+    // Same record with the slug as ?name=. Registries probe a fixed URL, so this one has no free pre-check.
+    "GET /api/subculture": paidRoute({ input: { name: "goth-ninja" }, inputSchema: slugSchema }),
   },
   new x402ResourceServer(network.facilitator()).register(network.caip2, new ExactEvmScheme()),
 );
@@ -157,6 +155,16 @@ app.use((req, res, next) => (isRapidApi(req) ? next() : x402(req, res, next)));
 
 app.get("/api/subculture/:name", (req, res) => {
   res.json({ ...res.locals.entry, dataset_version: dataset.version });
+});
+
+// Reached only after a verified payment. A 4xx/5xx here is never settled, so a wrong name costs nothing.
+app.get("/api/subculture", (req, res) => {
+  if (!dataset.ready) return res.status(503).json({ error: "Dataset loading, retry shortly" });
+  const entry = typeof req.query.name === "string" ? dataset.find(req.query.name) : null;
+  if (!entry) {
+    return res.status(404).json({ error: "Subculture not found", available: dataset.catalog().map((c) => c.slug) });
+  }
+  res.json({ ...entry, dataset_version: dataset.version });
 });
 
 // ---------------------------------------------------------------------------
