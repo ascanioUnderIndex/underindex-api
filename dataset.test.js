@@ -60,16 +60,17 @@ test("empty list fields come back as [] instead of missing", () => {
   assert.deepEqual(p.KeyBrands, ["The Row"]);
 });
 
-test("openapi marks only the record route as paid and lists the valid slugs", () => {
+test("openapi lists only the paid route, with its price and the valid slugs", () => {
   const doc = buildOpenApi({ origin: "https://example.test", price: "$0.01", slugs: ["goth-ninja", "opium"] });
-  const paid = doc.paths["/api/subculture/{name}"].get;
+  assert.deepEqual(Object.keys(doc.paths), ["/api/subculture"]);
+  const paid = doc.paths["/api/subculture"].get;
   assert.deepEqual(paid["x-payment-info"], {
     price: { mode: "fixed", currency: "USD", amount: "0.010000" },
     protocols: [{ x402: {} }],
   });
   assert.ok(paid.responses[402]);
+  assert.equal(paid.parameters[0].in, "query");
   assert.deepEqual(paid.parameters[0].schema.enum, ["goth-ninja", "opium"]);
   assert.equal(paid.parameters[0].example, "goth-ninja");
-  assert.equal(doc.paths["/api/catalog"].get["x-payment-info"], undefined);
   assert.equal(usdAmount("$0.5"), "0.500000");
 });
