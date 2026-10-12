@@ -7,16 +7,34 @@ UnderIndex is a high-density, machine-to-machine (M2M) dataset of verified groun
 It's built for AI agents, autonomous personal shoppers and RAG pipelines. Access is paid per call with the open [x402 protocol](https://x402.org) (USDC on Base), so any standard x402 client can pay without needing an API key or an account.
 
 ## 🧠 Why build with UnderIndex?
-Standard LLMs hallucinate when asked about niche fashion. They confuse *Techwear* with *Gorpcore*, invent fake archive brands, and give generic buying advice. UnderIndex is a deterministic source of truth:
+Even strong LLMs blur neighbouring aesthetics when asked about niche fashion. They mix *Goth Ninja* with *Techwear*, drift on dates, and pad outfits with generic high-street substitutes, and the answer changes from one run to the next. UnderIndex is a deterministic source of truth:
 - **High signal-to-noise:** Exact key brands, iconic items and historical context.
 - **Anti-hallucination guardrails:** Explicit `WARNING` notes that prevent common era and routing errors.
 - **Actionable marketplaces:** Specific destinations (e.g. "Yahoo Auctions Japan via proxy", "Grailed") instead of generic "Online" tags.
 - **Versioned:** Every response carries a `dataset_version`, so you can cache and detect changes.
 
+## 📊 Before / after
+Same model, same question, asked twice: once from memory, once with the UnderIndex record for that subculture.
+
+> *"Build me a Goth Ninja outfit. Name specific brands, the key pieces, where to buy them, a realistic budget, and say which years this aesthetic belongs to."*
+
+| | From memory | With UnderIndex |
+|---|---|---|
+| Years (record: 2009 - 2014) | 2011–2015, plus a "revival since 2021" | 2009–2014 |
+| Key brands in the record | 2 of 4 | 4 of 4 |
+| Iconic items in the record | 2 of 4 | 4 of 4 |
+| Where to buy | Grailed, plus SSENSE, Farfetch, Vinted, ASOS, Zalando | Grailed, Yahoo Auctions Japan |
+| Budget (record: $600 - $2500) | €300 to €8,000+ | $600 to $2,500 |
+| Techwear mixed in | Yes: an Acronym shell and Nike Tech Fleece | No: "skip the tactical straps, nylon shells and utility hardware" |
+
+The answer from memory is plausible, which is the problem: nothing in it signals that Acronym and Tech Fleece belong to a different aesthetic. The record's `WARNING` note ("Distinguish from modern Techwear") is what keeps the grounded answer inside the 2009-2014 look.
+
+Method: Claude Opus 5.5, two fresh chats with no memory and no web search, October 2026. In the second chat the record was pasted into the prompt. Full transcripts for this run and for an Acubi run are in [`demo/`](demo/), together with a Claude tool definition that pays for lookups over x402 ([`demo/underindex-tool.mjs`](demo/underindex-tool.mjs)).
+
 ## 🪙 Pricing
 - **Cost:** `$0.01` USDC per subculture record
 - **Protocol:** x402 v2, `exact` scheme
-- **Network:** Base (`eip155:8453`). A Base Sepolia testnet deployment is available for free testing.
+- **Network:** Base (`eip155:8453`). To try the flow for free, self-host the server: it starts on Base Sepolia testnet by default.
 - You are only charged when the server returns data. Unknown names return a free `404` before any payment is requested.
 
 ---
