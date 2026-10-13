@@ -2,7 +2,7 @@
 
 **The x402-monetized fashion data oracle for AI agents**
 
-UnderIndex is a high-density, machine-to-machine (M2M) dataset of verified grounding data on 30 niche fashion subcultures (from *Ura-Hara* to *Acubi* and *Opium*).
+UnderIndex is a high-density, machine-to-machine (M2M) dataset of verified grounding data on 60 niche fashion subcultures (from *Ura-Hara* and *Goth Ninja* to *Britpop* and *Opium*).
 
 It's built for AI agents, autonomous personal shoppers and RAG pipelines. Access is paid per call with the open [x402 protocol](https://x402.org) (USDC on Base), so any standard x402 client can pay without needing an API key or an account.
 
