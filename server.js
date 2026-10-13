@@ -1,5 +1,6 @@
 import "dotenv/config";
 import { timingSafeEqual } from "node:crypto";
+import { fileURLToPath } from "node:url";
 import express from "express";
 import cors from "cors";
 import Airtable from "airtable";
@@ -105,6 +106,11 @@ app.get("/openapi.json", (req, res) => {
       slugs: dataset.catalog().map((c) => c.slug),
     }),
   );
+});
+
+// FREE: icon that registries show next to the listing
+app.get("/favicon.ico", (req, res) => {
+  res.sendFile(fileURLToPath(new URL("./favicon.png", import.meta.url)), (err) => err && res.status(404).end());
 });
 
 // FREE pre-check, runs BEFORE the paywall: an agent never gets asked to pay for a name that doesn't exist.
