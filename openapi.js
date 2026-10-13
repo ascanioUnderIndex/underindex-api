@@ -68,6 +68,7 @@ export function buildOpenApi({ origin, price, slugs }) {
         "GET /api/subculture?name={slug} returns the record (paid per call over x402). Valid slugs are the enum of the name " +
         "parameter; GET /api/catalog lists them for free with display names and years. A wrong name returns 404 and is never charged. " +
         "Treat KeyBrands, Years and Notes as authoritative and follow the WARNING in Notes, which says what the subculture must not be confused with.",
+      contact: { email: "pteroplattino@gmail.com" },
     },
     servers: [{ url: origin }],
     // Only the paid route is listed: registries probe every path here and expect a 402 from each.
