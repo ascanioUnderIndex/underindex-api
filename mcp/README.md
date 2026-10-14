@@ -12,24 +12,18 @@ Without a wallet key the two free tools work and `get_subculture` explains how t
 
 ## Install
 
-Requires Node.js 20 or later.
-
-```bash
-git clone https://github.com/ascanioUnderIndex/underindex-api.git
-cd underindex-api/mcp
-npm install
-```
+Requires Node.js 20 or later. Nothing to download: `npx` fetches the [`underindex-mcp`](https://www.npmjs.com/package/underindex-mcp) package on first run.
 
 ### Claude Desktop
 
-Add this to `claude_desktop_config.json` (Settings → Developer → Edit Config), with the absolute path to `index.mjs`:
+Add this to `claude_desktop_config.json` (Settings → Developer → Edit Config):
 
 ```json
 {
   "mcpServers": {
     "underindex": {
-      "command": "node",
-      "args": ["/absolute/path/to/underindex-api/mcp/index.mjs"],
+      "command": "npx",
+      "args": ["-y", "underindex-mcp"],
       "env": {
         "UNDERINDEX_PRIVATE_KEY": "0x..."
       }
@@ -41,7 +35,7 @@ Add this to `claude_desktop_config.json` (Settings → Developer → Edit Config
 ### Claude Code
 
 ```bash
-claude mcp add underindex -e UNDERINDEX_PRIVATE_KEY=0x... -- node /absolute/path/to/underindex-api/mcp/index.mjs
+claude mcp add underindex -e UNDERINDEX_PRIVATE_KEY=0x... -- npx -y underindex-mcp
 ```
 
 Leave out `UNDERINDEX_PRIVATE_KEY` to use only the free tools.
