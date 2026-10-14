@@ -103,6 +103,8 @@ const res = await fetchWithPayment("https://underindex-api.onrender.com/api/subc
 console.log(await res.json());
 ```
 
+**Claude Desktop, Claude Code and other MCP clients:** [`mcp/`](mcp/) packages the API as an MCP server with three tools: `list_subcultures` and `get_sample_record` are free, `get_subculture` pays $0.01 per record from a wallet key you provide, with a hard per-call cap.
+
 **Coinbase AgentKit:** the built-in `make_http_request_with_x402` action works against this endpoint as is.
 
 **System prompt snippet**
