@@ -31,6 +31,17 @@ The answer from memory is plausible, which is the problem: nothing in it signals
 
 Method: Claude Opus 5.5, two fresh chats with no memory and no web search, October 2026. In the second chat the record was pasted into the prompt. Full transcripts for this run and for an Acubi run are in [`demo/`](demo/), together with a Claude tool definition that pays for lookups over x402 ([`demo/underindex-tool.mjs`](demo/underindex-tool.mjs)).
 
+## 📏 Evaluation: 15 subcultures
+The same outfit question for 15 subcultures, 30 fresh chats: each one once from memory and once with the record.
+
+| | From memory | With the record |
+|---|---|---|
+| Recommends a brand the dataset files under a neighbouring subculture | 8 of 15 answers | 1 of 15 |
+| Years match the record (within 2 years) | 13 of 15 | 15 of 15 |
+| Record's key brands named | 71% | 98% |
+
+From memory the model put Red Wing into Amekaji, Y-3 into Goth Ninja and Massimo Dutti into Quiet Luxury. It knows the well-documented scenes (Indie Sleaze, Mall Goth, Terrace Casuals) about as well as the records do; the gap is on the niche ones (Acubi, Frutiger Aero, Amekaji). The run also showed weak points in 9 records, which were checked and corrected afterwards. Method, limits and all 30 answers: [`eval/`](eval/).
+
 ## 🪙 Pricing
 - **Cost:** `$0.01` USDC per subculture record
 - **Protocol:** x402 v2, `exact` scheme
