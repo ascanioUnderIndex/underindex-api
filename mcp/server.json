@@ -1,0 +1,32 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.ascanioUnderIndex/underindex",
+  "description": "Verified records on 60 niche fashion subcultures for AI agents, $0.01 per lookup over x402",
+  "repository": {
+    "url": "https://github.com/ascanioUnderIndex/underindex-api",
+    "source": "github",
+    "subfolder": "mcp"
+  },
+  "version": "0.1.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "underindex-mcp",
+      "version": "0.1.1",
+      "transport": { "type": "stdio" },
+      "environmentVariables": [
+        {
+          "name": "UNDERINDEX_PRIVATE_KEY",
+          "description": "Private key of a dedicated EVM wallet holding USDC on Base. Optional: without it only the free tools work.",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "UNDERINDEX_MAX_PER_CALL",
+          "description": "Hard spending cap per lookup, default $0.05",
+          "isRequired": false
+        }
+      ]
+    }
+  ]
+}
