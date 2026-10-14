@@ -60,7 +60,13 @@ Returns `{ dataset_version, price, network, subcultures: [{ slug, name, years }]
 
 `GET /api/subcultures` still returns the plain array of display names for older clients.
 
-### 2. Subculture record (paid, x402)
+### 2. Free sample
+```http
+GET https://underindex-api.onrender.com/api/sample
+```
+Returns one complete record (Goth Ninja) for free, in exactly the shape of the paid response, so you can see what you are buying and test your parser before setting up a wallet.
+
+### 3. Subculture record (paid, x402)
 ```http
 GET https://underindex-api.onrender.com/api/subculture?name={slug}
 ```
@@ -68,7 +74,7 @@ Example: `/api/subculture?name=goth-ninja`, `/api/subculture?name=ura-hara-haraj
 
 The same record is also served at `/api/subculture/{slug}`. On that form an unknown slug gets its `404` before any payment is requested; on the query form the `404` comes after the payment is verified and nothing is settled. Use whichever your client handles better.
 
-### 3. OpenAPI document (free)
+### 4. OpenAPI document (free)
 ```http
 GET https://underindex-api.onrender.com/openapi.json
 ```
