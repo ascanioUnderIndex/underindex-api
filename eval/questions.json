@@ -1,0 +1,148 @@
+[
+ {
+  "id": 1,
+  "slug": "goth-ninja",
+  "name": "Goth Ninja",
+  "neighbours": [
+   "techwear"
+  ],
+  "prompt": "Build me a Goth Ninja outfit. Name specific brands, the key pieces, where to buy them, a realistic budget, and say which years this aesthetic belongs to."
+ },
+ {
+  "id": 2,
+  "slug": "acubi-style",
+  "name": "Acubi Style",
+  "neighbours": [
+   "y2k",
+   "subversive-basics"
+  ],
+  "prompt": "Build me an Acubi Style outfit. Name specific brands, the key pieces, where to buy them, a realistic budget, and say which years this aesthetic belongs to."
+ },
+ {
+  "id": 3,
+  "slug": "opium",
+  "name": "Opium",
+  "neighbours": [
+   "hypebeast-streetwear",
+   "goth-ninja"
+  ],
+  "prompt": "Build me an Opium outfit. Name specific brands, the key pieces, where to buy them, a realistic budget, and say which years this aesthetic belongs to."
+ },
+ {
+  "id": 4,
+  "slug": "ura-hara-harajuku-90s",
+  "name": "Ura-Hara (Harajuku 90s)",
+  "neighbours": [
+   "hypebeast-streetwear"
+  ],
+  "prompt": "Build me an Ura-Hara (Harajuku 90s) outfit. Name specific brands, the key pieces, where to buy them, a realistic budget, and say which years this aesthetic belongs to."
+ },
+ {
+  "id": 5,
+  "slug": "health-goth",
+  "name": "Health Goth",
+  "neighbours": [
+   "techwear"
+  ],
+  "prompt": "Build me a Health Goth outfit. Name specific brands, the key pieces, where to buy them, a realistic budget, and say which years this aesthetic belongs to."
+ },
+ {
+  "id": 6,
+  "slug": "mall-goth",
+  "name": "Mall Goth",
+  "neighbours": [
+   "trad-goth",
+   "emo"
+  ],
+  "prompt": "Build me a Mall Goth outfit. Name specific brands, the key pieces, where to buy them, a realistic budget, and say which years this aesthetic belongs to."
+ },
+ {
+  "id": 7,
+  "slug": "indie-sleaze",
+  "name": "Indie Sleaze",
+  "neighbours": [
+   "post-punk-revival",
+   "twee"
+  ],
+  "prompt": "Build me an Indie Sleaze outfit. Name specific brands, the key pieces, where to buy them, a realistic budget, and say which years this aesthetic belongs to."
+ },
+ {
+  "id": 8,
+  "slug": "blokecore",
+  "name": "Blokecore",
+  "neighbours": [
+   "terrace-casuals",
+   "uk-roadman"
+  ],
+  "prompt": "Build me a Blokecore outfit. Name specific brands, the key pieces, where to buy them, a realistic budget, and say which years this aesthetic belongs to."
+ },
+ {
+  "id": 9,
+  "slug": "quiet-luxury",
+  "name": "Quiet Luxury",
+  "neighbours": [
+   "old-money"
+  ],
+  "prompt": "Build me a Quiet Luxury outfit. Name specific brands, the key pieces, where to buy them, a realistic budget, and say which years this aesthetic belongs to."
+ },
+ {
+  "id": 10,
+  "slug": "whimsigoth",
+  "name": "Whimsigoth",
+  "neighbours": [
+   "trad-goth",
+   "fairy-grunge"
+  ],
+  "prompt": "Build me a Whimsigoth outfit. Name specific brands, the key pieces, where to buy them, a realistic budget, and say which years this aesthetic belongs to."
+ },
+ {
+  "id": 11,
+  "slug": "city-boy",
+  "name": "City Boy",
+  "neighbours": [
+   "ivy-style",
+   "amekaji"
+  ],
+  "prompt": "Build me a City Boy outfit. Name specific brands, the key pieces, where to buy them, a realistic budget, and say which years this aesthetic belongs to."
+ },
+ {
+  "id": 12,
+  "slug": "frutiger-aero-fashion",
+  "name": "Frutiger Aero Fashion",
+  "neighbours": [
+   "cyber-y2k",
+   "mcbling"
+  ],
+  "prompt": "Build me a Frutiger Aero Fashion outfit. Name specific brands, the key pieces, where to buy them, a realistic budget, and say which years this aesthetic belongs to."
+ },
+ {
+  "id": 13,
+  "slug": "terrace-casuals",
+  "name": "Terrace Casuals",
+  "neighbours": [
+   "blokecore",
+   "mod"
+  ],
+  "prompt": "Build me a Terrace Casuals outfit. Name specific brands, the key pieces, where to buy them, a realistic budget, and say which years this aesthetic belongs to."
+ },
+ {
+  "id": 14,
+  "slug": "amekaji",
+  "name": "Amekaji",
+  "neighbours": [
+   "heritage-workwear",
+   "city-boy"
+  ],
+  "prompt": "Build me an Amekaji outfit. Name specific brands, the key pieces, where to buy them, a realistic budget, and say which years this aesthetic belongs to."
+ },
+ {
+  "id": 15,
+  "slug": "gyaru",
+  "name": "Gyaru",
+  "neighbours": [
+   "lolita",
+   "decora"
+  ],
+  "prompt": "Build me a Gyaru outfit. Name specific brands, the key pieces, where to buy them, a realistic budget, and say which years this aesthetic belongs to."
+ }
+]
