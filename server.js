@@ -20,6 +20,7 @@ const PAY_TO = process.env.PAY_TO || "0xb5842a407e6b37925DafEcf265a80A697f2B474C
 const PRICE = process.env.PRICE_USD || "$0.01";
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID || "appEkpxkkqg3JZ2wj";
 const REFRESH_MS = Number(process.env.DATASET_REFRESH_MS || 10 * 60 * 1000);
+const SAMPLE_SLUG = process.env.SAMPLE_SLUG || "goth-ninja";
 
 // X402_NETWORK=base-sepolia (default, testnet, free x402.org facilitator, no keys)
 // X402_NETWORK=base         (mainnet, CDP facilitator, needs CDP_API_KEY_ID + CDP_API_KEY_SECRET)
@@ -92,8 +93,17 @@ app.get("/api/catalog", (req, res) => {
     price: PRICE,
     network: network.caip2,
     detail_endpoint: "/api/subculture/{slug}",
+    free_sample: "/api/sample",
     subcultures: dataset.catalog(),
   });
+});
+
+// FREE: one complete record, in exactly the paid shape, so people can see what they buy before setting up a wallet
+app.get("/api/sample", (req, res) => {
+  if (!dataset.ready) return res.status(503).json({ error: "Dataset loading, retry shortly" });
+  const entry = dataset.find(SAMPLE_SLUG);
+  if (!entry) return res.status(404).json({ error: "Sample not available" });
+  res.json({ ...entry, dataset_version: dataset.version });
 });
 
 // FREE: discovery document for registries and agents (lists the routes, the price and the valid slugs)
