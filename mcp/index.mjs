@@ -39,7 +39,7 @@ async function getJson(path) {
   return body;
 }
 
-const server = new McpServer({ name: "underindex", version: "0.1.0" });
+const server = new McpServer({ name: "underindex", version: "0.1.1" });
 
 server.registerTool(
   "list_subcultures",
