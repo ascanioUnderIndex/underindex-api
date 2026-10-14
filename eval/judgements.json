@@ -1,0 +1,215 @@
+{
+ "_how": "Hand judgements. years: does the answer's core window match the record's within 2 years at each end? neighbour: for each neighbour brand the script found, is it recommended for the outfit or only mentioned (history, or to exclude it)?",
+ "years": {
+  "goth-ninja": {
+   "record": "2009 - 2014",
+   "memory": [
+    "2012–2015, peaking 2013–2014",
+    false
+   ],
+   "grounded": [
+    "2009 to 2014",
+    true
+   ]
+  },
+  "acubi-style": {
+   "record": "2021 - Present",
+   "memory": [
+    "emerged around 2022, peaked 2023–2024",
+    true
+   ],
+   "grounded": [
+    "2021–2022 onward",
+    true
+   ]
+  },
+  "opium": {
+   "record": "2019 - Present",
+   "memory": [
+    "label formed around 2019, peak 2021–2024",
+    true
+   ],
+   "grounded": [
+    "2019–present",
+    true
+   ]
+  },
+  "ura-hara-harajuku-90s": {
+   "record": "Mid 90s - Early 00s",
+   "memory": [
+    "1993–2003",
+    true
+   ],
+   "grounded": [
+    "~1993–2002",
+    true
+   ]
+  },
+  "health-goth": {
+   "record": "2013 - 2017",
+   "memory": [
+    "2013–2016",
+    true
+   ],
+   "grounded": [
+    "2013–2017",
+    true
+   ]
+  },
+  "mall-goth": {
+   "record": "1999 - 2006",
+   "memory": [
+    "1997 to 2006",
+    true
+   ],
+   "grounded": [
+    "1999–2006",
+    true
+   ]
+  },
+  "indie-sleaze": {
+   "record": "2008 - 2012",
+   "memory": [
+    "2006–2012",
+    true
+   ],
+   "grounded": [
+    "2006 to 2012",
+    true
+   ]
+  },
+  "blokecore": {
+   "record": "2022 - Present",
+   "memory": [
+    "emerged 2021–2022, peaked 2022–2023",
+    true
+   ],
+   "grounded": [
+    "2022 to the present",
+    true
+   ]
+  },
+  "quiet-luxury": {
+   "record": "2022 - Present",
+   "memory": [
+    "peaked in 2023, strong through 2024",
+    true
+   ],
+   "grounded": [
+    "2022 to the present",
+    true
+   ]
+  },
+  "whimsigoth": {
+   "record": "1990 - 1998",
+   "memory": [
+    "1994 to 2002",
+    false
+   ],
+   "grounded": [
+    "1990 to 1998",
+    true
+   ]
+  },
+  "city-boy": {
+   "record": "2012 - Present",
+   "memory": [
+    "2012 onward",
+    true
+   ],
+   "grounded": [
+    "2012 to present",
+    true
+   ]
+  },
+  "frutiger-aero-fashion": {
+   "record": "2004 - 2013",
+   "memory": [
+    "2004–2013",
+    true
+   ],
+   "grounded": [
+    "2004–2013",
+    true
+   ]
+  },
+  "terrace-casuals": {
+   "record": "Late 70s - Early 90s",
+   "memory": [
+    "1977–78 onward, peak 1981–1985, changed by 1988–89",
+    true
+   ],
+   "grounded": [
+    "late 1970s to early 1990s",
+    true
+   ]
+  },
+  "amekaji": {
+   "record": "Late 80s - Present",
+   "memory": [
+    "full street style from the late 1980s–90s, still current",
+    true
+   ],
+   "grounded": [
+    "late 1980s to the present",
+    true
+   ]
+  },
+  "gyaru": {
+   "record": "1995 - 2014",
+   "memory": [
+    "early-to-mid 1990s to early 2010s (egg ended 2014)",
+    true
+   ],
+   "grounded": [
+    "1995–2014",
+    true
+   ]
+  }
+ },
+ "neighbour": {
+  "goth-ninja/memory": {
+   "ACRONYM": "mentioned (history: 'split into techwear (Acronym...)')",
+   "Y-3": "recommended (Y-3 Qasa High as the mid-tier shoe)"
+  },
+  "health-goth/memory": {
+   "Nike ACG": "recommended (technical shell)"
+  },
+  "mall-goth/memory": {
+   "Dr. Martens": "recommended (Jadon platforms as an option)"
+  },
+  "blokecore/memory": {
+   "C.P. Company": "recommended (overshirt as an optional layer)"
+  },
+  "quiet-luxury/memory": {
+   "Massimo Dutti": "recommended (accessible-tier coat)"
+  },
+  "whimsigoth/memory": {
+   "Dr. Martens": "recommended (Jadon boots)"
+  },
+  "whimsigoth/grounded": {
+   "Dr. Martens": "recommended ('90s-style Doc Martens')"
+  },
+  "terrace-casuals/memory": {
+   "Fred Perry": "recommended (polo; historically worn by casuals, so defensible)"
+  },
+  "amekaji/memory": {
+   "Red Wing": "recommended (875 Moc Toe as the boot)"
+  },
+  "amekaji/grounded": {
+   "Red Wing": "mentioned to exclude it ('belong to Heritage Workwear')"
+  }
+ },
+ "record_flags": {
+  "acubi-style": "Name comes from the Korean label Acubi Club, missing from KeyBrands. $100–400 only works without Hyein Seo / Thug Club, which are luxury-priced.",
+  "opium": "$800–3,500 only works secondhand or without a Rick Owens leather jacket.",
+  "ura-hara-harajuku-90s": "Years says mid 90s but Notes says strictly late 90s; scene started in 1993 (Nowhere, BAPE). Goodenough / Neighborhood more central than Number (N)ine. Shenmue unrelated to the fashion.",
+  "health-goth": "Started on a Portland Facebook page around 2012-2013, not Tumblr. Vaporwave was a neighbouring scene, not core music.",
+  "indie-sleaze": "Look was forming from the mid-2000s. The RealReal is a weak fit for this look.",
+  "whimsigoth": "American McGee's Alice (2000) is outside 1990-1998.",
+  "frutiger-aero-fashion": "Oakley Software and Prada Linea Rossa peaked before 2004. Mirror's Edge is dystopian, against the record's own rule. Coldplay is a loose fit.",
+  "terrace-casuals": "The Jam is a Mod-revival band.",
+  "gyaru": "Liz Lisa and MA*RS are Hime Gyaru / Agejo brands and clash with the tanned Alba Rosa look; KeyBrands mixes substyles."
+ },
+ "corrections": "**What changed afterwards.** Each point was checked against web sources and the 9 records were corrected in dataset version `9ab6258f9c51` (2026-10-14): Acubi Style adds Acubi Club and moves to $150 - $800; Opium moves to $800 - $5000; Ura-Hara starts in 1993, replaces Number (N)ine with Goodenough and Neighborhood, drops Shenmue and moves to $400 - $2000; Health Goth credits the 2013 Portland Facebook page and drops Vaporwave; Indie Sleaze starts in 2006 and swaps The RealReal for eBay; Whimsigoth drops American McGee’s Alice; Frutiger Aero swaps Mirror’s Edge for Wii Sports; Terrace Casuals swaps The Jam for The Farm; Gyaru labels Liz Lisa as Hime Gyaru and MA*RS as Agejo. The brand-timing note on Oakley and Prada Linea Rossa was left as is. The scores above are for the records as they were during the run (`records.json`)."
+}
