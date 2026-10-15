@@ -118,6 +118,11 @@ app.get("/openapi.json", (req, res) => {
   );
 });
 
+// FREE: landing page for people who arrive from a directory or registry
+app.get("/", (req, res) => {
+  res.sendFile(fileURLToPath(new URL("./landing.html", import.meta.url)));
+});
+
 // FREE: icon that registries show next to the listing
 app.get("/favicon.ico", (req, res) => {
   res.sendFile(fileURLToPath(new URL("./favicon.png", import.meta.url)), (err) => err && res.status(404).end());
