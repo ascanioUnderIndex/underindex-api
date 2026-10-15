@@ -151,6 +151,10 @@ const paidRoute = (discovery) => ({
   accepts: [{ scheme: "exact", price: PRICE, network: network.caip2, payTo: PAY_TO }],
   description: RECORD_DESCRIPTION,
   mimeType: "application/json",
+  // Shown by Bazaar catalogs such as agentic.market; without them the listing has no name and a guessed domain.
+  serviceName: "UnderIndex",
+  tags: ["fashion", "subcultures", "grounding", "rag", "dataset"],
+  iconUrl: "https://underindex-api.onrender.com/favicon.ico",
   extensions: { ...declareDiscoveryExtension({ ...discovery, output: { example: EXAMPLE_RECORD } }) },
 });
 const slugSchema = {
