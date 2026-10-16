@@ -1,5 +1,7 @@
 # UnderIndex MCP server
 
+[![Listed on mcpservers.org](https://mcpservers.org/badge.svg)](https://mcpservers.org/servers/github-com-ascaniounderindex-underindex-api-tree-main-mcp)
+
 Gives Claude (or any MCP client) verified records on 60 niche fashion subcultures: years, key brands, iconic items, music, where to buy, a price range, and a `WARNING` note on what each one must not be confused with. It is the [UnderIndex API](https://github.com/ascanioUnderIndex/underindex-api) as three tools.
 
 | Tool | Cost | What it does |
