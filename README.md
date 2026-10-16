@@ -1,5 +1,7 @@
 # UnderIndex API 🔮
 
+[![Listed on mcpservers.org](https://mcpservers.org/badge.svg)](https://mcpservers.org/servers/github-com-ascaniounderindex-underindex-api-tree-main-mcp)
+
 **The x402-monetized fashion data oracle for AI agents**
 
 UnderIndex is a high-density, machine-to-machine (M2M) dataset of verified grounding data on 60 niche fashion subcultures (from *Ura-Hara* and *Goth Ninja* to *Britpop* and *Opium*).
