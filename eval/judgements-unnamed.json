@@ -1,0 +1,72 @@
+{
+  "_how": "Every unnamed-neighbour hit from rescore-unnamed.mjs, read in context. Only labels starting with 'recommended' count as a blend. 'not a brand' = the word is used as a colour. 'same brand as own line' = the record itself lists a line of that brand (Nike ACG, Nike Gyakusou), so the hit is not a borrowing from another style. Labelled 2026-10-18 against the frozen records.json.",
+  "goth-ninja/memory": {
+    "Adidas (vintage)": "recommended (Adidas x Rick Owens collabs as mid-tier, Adidas Tubular as budget shoe)",
+    "Off-White": "not a brand ('Rick Owens' off-white dust' accent colour)",
+    "Nike": "recommended (Nike Tech Fleece joggers, Nike Roshe Run)",
+    "Converse": "recommended (black Converse Chuck 70 Hi as budget shoe)"
+  },
+  "goth-ninja/grounded": {
+    "Off-White": "not a brand ('maybe some off-white' in the palette)"
+  },
+  "acubi-style/memory": {
+    "Adidas (vintage)": "recommended (Adidas Originals jacket, Adidas Taekwondo shoes)",
+    "Off-White": "not a brand (palette colour)"
+  },
+  "acubi-style/grounded": {
+    "Off-White": "not a brand (palette and base-layer colour)"
+  },
+  "ura-hara-harajuku-90s/memory": {
+    "Nike": "recommended (Air Max 95 neon, Air Force 1, Jordan 1; historically accurate for the scene)"
+  },
+  "ura-hara-harajuku-90s/grounded": {
+    "Adidas (vintage)": "recommended (adidas Superstars as 90s sneaker)",
+    "Vans": "recommended (Vans as 90s sneaker)"
+  },
+  "health-goth/memory": {
+    "Oakley (vintage)": "recommended (Oakley Radar or Flak wraparound sunglasses)",
+    "Adidas (vintage)": "recommended (Adidas Terrex shell, Rick Owens x Adidas pieces)",
+    "Rick Owens": "recommended (archival Rick Owens x Adidas pieces as splurge)",
+    "Nike": "same brand as own line (record lists Nike Gyakusou; answer recommends Nike Pro, Tech Fleece, Air Max)"
+  },
+  "health-goth/grounded": {
+    "Adidas (vintage)": "recommended (adidas Ultraboost as alternative trainer)",
+    "Nike": "same brand as own line (record lists Nike Gyakusou; answer recommends Nike Pro tights, Air Max 95)"
+  },
+  "indie-sleaze/memory": {
+    "Dr. Martens": "recommended (beat-up Dr. Martens 1460s)",
+    "Converse": "recommended (scuffed Converse Chuck Taylors)"
+  },
+  "indie-sleaze/grounded": {
+    "Dr. Martens": "recommended (Dr. Martens as shoe option)",
+    "Converse": "recommended (beat-up Converse Chuck Taylors)"
+  },
+  "quiet-luxury/memory": {
+    "G.H. Bass": "recommended (G.H. Bass Weejuns as budget loafer)",
+    "Helmut Lang (archival)": "mentioned (history: 1990s minimalism roots)"
+  },
+  "whimsigoth/memory": {
+    "Demonia": "recommended (Demonia as cheaper platform shoe)"
+  },
+  "city-boy/memory": {
+    "Clarks": "recommended (Clarks Wallabees as alternative shoe)",
+    "Ralph Lauren": "recommended (Polo Ralph Lauren Oxford as mid-range)",
+    "Barbour": "recommended (Beams' Barbour collaborations as outer layer)"
+  },
+  "city-boy/grounded": {
+    "Clarks": "recommended (Clarks Wallabees as alternative shoe)"
+  },
+  "frutiger-aero-fashion/memory": {
+    "Adidas (vintage)": "recommended (Adidas Originals Firebird track pants)",
+    "Nike": "same brand as own line (record lists Nike ACG; answer recommends Nike Windrunner, Air Max 97)"
+  },
+  "frutiger-aero-fashion/grounded": {
+    "Nike": "same brand as own line (record lists Nike ACG; answer recommends ACG plus Air Max 360, Shox)"
+  },
+  "terrace-casuals/memory": {
+    "Lacoste": "recommended (Lacoste L.12.12 polo; historically worn by casuals)"
+  },
+  "amekaji/memory": {
+    "Converse": "recommended (Converse Chuck 70s, called period-correct)"
+  }
+}
