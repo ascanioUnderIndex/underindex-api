@@ -10,6 +10,7 @@ import { HTTPFacilitatorClient } from "@x402/core/server";
 import { declareDiscoveryExtension } from "@x402/extensions/bazaar";
 import { createCdpFacilitatorClient } from "@coinbase/cdp-sdk/x402";
 import { createDataset } from "./dataset.js";
+import { createFreeQuota } from "./free-quota.js";
 import { buildOpenApi, EXAMPLE_RECORD, RECORD_DESCRIPTION } from "./openapi.js";
 
 // ---------------------------------------------------------------------------
@@ -21,6 +22,7 @@ const PRICE = process.env.PRICE_USD || "$0.01";
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID || "appEkpxkkqg3JZ2wj";
 const REFRESH_MS = Number(process.env.DATASET_REFRESH_MS || 10 * 60 * 1000);
 const SAMPLE_SLUG = process.env.SAMPLE_SLUG || "goth-ninja";
+const FREE_PER_DAY = Number(process.env.FREE_PER_DAY ?? 3);
 
 // X402_NETWORK=base-sepolia (default, testnet, free x402.org facilitator, no keys)
 // X402_NETWORK=base         (mainnet, CDP facilitator, needs CDP_API_KEY_ID + CDP_API_KEY_SECRET)
@@ -63,7 +65,7 @@ app.set("trust proxy", true);
 app.use(
   cors({
     // Browser-based agents must be able to read the x402 v2 headers.
-    exposedHeaders: ["PAYMENT-REQUIRED", "PAYMENT-RESPONSE"],
+    exposedHeaders: ["PAYMENT-REQUIRED", "PAYMENT-RESPONSE", "RateLimit-Limit", "RateLimit-Remaining", "RateLimit-Reset"],
   }),
 );
 app.use(express.json());
@@ -94,6 +96,8 @@ app.get("/api/catalog", (req, res) => {
     network: network.caip2,
     detail_endpoint: "/api/subculture/{slug}",
     free_sample: "/api/sample",
+    free_endpoint: FREE_PER_DAY > 0 ? "/api/free/subculture/{slug}" : null,
+    free_per_day: FREE_PER_DAY,
     subcultures: dataset.catalog(),
   });
 });
@@ -104,6 +108,35 @@ app.get("/api/sample", (req, res) => {
   const entry = dataset.find(SAMPLE_SLUG);
   if (!entry) return res.status(404).json({ error: "Sample not available" });
   res.json({ ...entry, dataset_version: dataset.version });
+});
+
+// FREE, capped: any record without a wallet, FREE_PER_DAY per client per UTC day. A separate route on purpose:
+// registries probe the paid route and expect a 402 there, so the paid route never answers for free.
+const freeQuota = createFreeQuota({ limit: FREE_PER_DAY });
+app.get("/api/free/subculture/:name", (req, res) => {
+  if (!dataset.ready) return res.status(503).json({ error: "Dataset loading, retry shortly" });
+  const entry = dataset.find(req.params.name);
+  if (!entry) {
+    return res.status(404).json({ error: "Subculture not found", available: dataset.catalog().map((c) => c.slug) });
+  }
+  // Cloudflare sits in front of Render and overwrites CF-Connecting-IP; X-Forwarded-For can be set by the client.
+  const cfIp = req.get("cf-connecting-ip");
+  const take = freeQuota.take(cfIp || req.ip);
+  res.set({
+    "RateLimit-Limit": String(FREE_PER_DAY),
+    "RateLimit-Remaining": String(take.remaining),
+    "RateLimit-Reset": String(Math.ceil((take.resetAt - Date.now()) / 1000)),
+  });
+  if (!take.allowed) {
+    return res.status(429).json({
+      error: `Free allowance used: ${FREE_PER_DAY} records per day`,
+      resets_at: take.resetAt.toISOString(),
+      paid_endpoint: `/api/subculture/${req.params.name}`,
+      price: PRICE,
+    });
+  }
+  console.log(`free: ${req.params.name} (${take.remaining} left, ${freeQuota.clientsToday()} clients today, key ${cfIp ? "cf" : "ip"})`);
+  res.json({ ...entry, dataset_version: dataset.version, free_remaining_today: take.remaining });
 });
 
 // FREE: discovery document for registries and agents (lists the routes, the price and the valid slugs)
