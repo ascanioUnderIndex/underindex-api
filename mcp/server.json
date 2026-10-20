@@ -7,17 +7,17 @@
     "source": "github",
     "subfolder": "mcp"
   },
-  "version": "0.1.1",
+  "version": "0.2.0",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "underindex-mcp",
-      "version": "0.1.1",
+      "version": "0.2.0",
       "transport": { "type": "stdio" },
       "environmentVariables": [
         {
           "name": "UNDERINDEX_PRIVATE_KEY",
-          "description": "Private key of a dedicated EVM wallet holding USDC on Base. Optional: without it only the free tools work.",
+          "description": "Private key of a dedicated EVM wallet holding USDC on Base. Optional: without it get_subculture uses the free allowance of 3 records a day.",
           "isRequired": false,
           "isSecret": true
         },
