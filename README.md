@@ -49,6 +49,7 @@ From memory the model put Red Wing into Amekaji, Y-3 into Goth Ninja and Massimo
 - **Protocol:** x402 v2, `exact` scheme
 - **Network:** Base (`eip155:8453`). To try the flow for free, self-host the server: it starts on Base Sepolia testnet by default.
 - You are only charged when the server returns data. An unknown name returns `404` and is never settled.
+- **Free allowance:** 3 records per day per client at `/api/free/subculture/{slug}`, no wallet needed.
 
 ---
 
@@ -68,7 +69,15 @@ GET https://underindex-api.onrender.com/api/sample
 ```
 Returns one complete record (Goth Ninja) for free, in exactly the shape of the paid response, so you can see what you are buying and test your parser before setting up a wallet.
 
-### 3. Subculture record (paid, x402)
+### 3. Free daily allowance
+```http
+GET https://underindex-api.onrender.com/api/free/subculture/{slug}
+```
+Any record, no wallet, up to 3 per day per client (resets at midnight UTC). Same shape as the paid response plus `free_remaining_today`; the `RateLimit-Remaining` and `RateLimit-Reset` headers carry the same information. Once the allowance is used the route answers `429` with `resets_at` and the paid endpoint to use instead. An unknown slug returns `404` and does not count.
+
+This route is separate from the paid one on purpose: registries check that the paid route answers `402`, so it never serves records for free.
+
+### 4. Subculture record (paid, x402)
 ```http
 GET https://underindex-api.onrender.com/api/subculture?name={slug}
 ```
@@ -76,7 +85,7 @@ Example: `/api/subculture?name=goth-ninja`, `/api/subculture?name=ura-hara-haraj
 
 The same record is also served at `/api/subculture/{slug}`. On that form an unknown slug gets its `404` before any payment is requested; on the query form the `404` comes after the payment is verified and nothing is settled. Use whichever your client handles better.
 
-### 4. OpenAPI document (free)
+### 5. OpenAPI document (free)
 ```http
 GET https://underindex-api.onrender.com/openapi.json
 ```
@@ -133,6 +142,7 @@ npm test               # dataset unit tests (no network)
 | `PRICE_USD` | no | Default `$0.01` |
 | `RAPIDAPI_SECRET` | no | Lets RapidAPI marketplace traffic skip x402 |
 | `DATASET_REFRESH_MS` | no | Airtable snapshot refresh interval, default 10 minutes |
+| `FREE_PER_DAY` | no | Free records per client per day at `/api/free/subculture/{slug}`, default `3`; `0` disables the route |
 
 Data is loaded from Airtable at startup and refreshed in the background. Requests are served from memory, so traffic never reaches Airtable's rate limits.
 
