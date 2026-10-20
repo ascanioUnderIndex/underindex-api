@@ -8,9 +8,9 @@ Gives Claude (or any MCP client) verified records on 60 niche fashion subculture
 |---|---|---|
 | `list_subcultures` | free | Every slug with its name and years |
 | `get_sample_record` | free | One complete record (Goth Ninja), to see the shape |
-| `get_subculture` | $0.01 USDC on Base | One record, paid automatically over [x402](https://x402.org) |
+| `get_subculture` | 3 free a day, then $0.01 USDC on Base | One record, paid automatically over [x402](https://x402.org) |
 
-Without a wallet key the two free tools work and `get_subculture` explains how to enable payments.
+Without a wallet key `get_subculture` uses the free allowance: 3 records a day, resetting at midnight UTC. After that it explains how to enable payments. With a key set, every lookup is paid.
 
 ## Install
 
