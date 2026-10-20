@@ -107,7 +107,8 @@
   .record .src { grid-column: 1 / -1; padding: 12px 24px; font: 12px var(--mono); color: var(--muted); }
 
   .catalog { display: flex; flex-wrap: wrap; gap: 8px; }
-  .catalog .chip { background: var(--surface); }
+  .catalog .chip { background: var(--surface); color: var(--ink); text-decoration: none; }
+  .catalog a.chip:hover { border-color: var(--accent); }
   .catalog .chip span { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-left: 6px; }
 
   .use { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
@@ -160,6 +161,7 @@
     <div class="facts">
       <div><b>$0.01</b> per record</div>
       <div><b>x402</b> USDC on Base</div>
+      <div><b>3 free</b> records a day</div>
       <div><b>No</b> API key or account</div>
       <div><b>MCP</b> server for Claude</div>
     </div>
@@ -209,7 +211,7 @@
     <div class="wrap">
       <div class="eyebrow">Catalog</div>
       <h2>Every subculture covered.</h2>
-      <p class="sub">The list is free at <code>GET /api/catalog</code>; use the slug to fetch a record.</p>
+      <p class="sub">The list is free at <code>GET /api/catalog</code>. Click any subculture to open its full record: <code>GET /api/free/subculture/{slug}</code> serves 3 a day for free, no wallet needed.</p>
       <div class="catalog" id="catalog-list"></div>
     </div>
   </section>
@@ -266,6 +268,7 @@ console.log(await res.json());</code></pre>
       <ul class="endpoints">
         <li><code>GET /api/catalog</code><span class="tag">free</span><span>Every slug with its name and years, plus the dataset version and price.</span></li>
         <li><code>GET /api/sample</code><span class="tag">free</span><span>One complete record (Goth Ninja), in the paid shape.</span></li>
+        <li><code>GET /api/free/subculture/{slug}</code><span class="tag">3 free a day</span><span>Any record without a wallet, 3 per day per client. Answers 429 once used, with the time it resets.</span></li>
         <li><code>GET /api/subculture/{slug}</code><span class="tag paid">$0.01</span><span>The full record. Also served as <code>/api/subculture?name={slug}</code>.</span></li>
         <li><code>GET /openapi.json</code><span class="tag">free</span><span>OpenAPI 3.1 with x402 payment info and every valid slug.</span></li>
       </ul>
@@ -337,9 +340,10 @@ console.log(await res.json());</code></pre>
     document.getElementById("count").textContent = cat.subcultures.length;
     var box = document.getElementById("catalog-list");
     cat.subcultures.slice().sort(function (a, b) { return a.name.localeCompare(b.name); }).forEach(function (s) {
-      var c = el("span", "chip", s.name);
+      var c = el("a", "chip", s.name);
       if (s.years) c.appendChild(el("span", null, s.years));
-      c.title = s.slug;
+      c.href = "/api/free/subculture/" + encodeURIComponent(s.slug);
+      c.title = s.slug + " (opens the free record, 3 a day)";
       box.appendChild(c);
     });
   }).catch(function () {});
