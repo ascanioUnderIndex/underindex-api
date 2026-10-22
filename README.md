@@ -34,16 +34,18 @@ The answer from memory is plausible, which is the problem: nothing in it signals
 Method: Claude Opus 5.5, two fresh chats with no memory and no web search, October 2026. In the second chat the record was pasted into the prompt. Full transcripts for this run and for an Acubi run are in [`demo/`](demo/), together with a Claude tool definition that pays for lookups over x402 ([`demo/underindex-tool.mjs`](demo/underindex-tool.mjs)).
 
 ## 📏 Evaluation: 15 subcultures
-The same outfit question for 15 subcultures, 45 fresh chats: each one from memory, with the record, and with the record minus its `WARNING` note.
+The same outfit question for 15 subcultures, run twice: from memory, with the record, and with the record minus its `WARNING` note (90 fresh chats).
 
 | Metric | From memory | With the record | Record without WARNING |
 |:---|:---:|:---:|:---:|
-| Recommends a brand the dataset files under a neighbouring subculture | 8 of 15 answers | 1 of 15 | 1 of 15 |
-| Recommends a brand of any other subculture in the dataset | 11 of 15 | 4 of 15 | 3 of 15 |
-| Years match the record (within 2 years) | 13 of 15 | 15 of 15 | 15 of 15 |
-| Record's key brands named | 71% | 98% | 100% |
+| Recommends a brand the dataset files under a neighbouring subculture | 17 of 30 answers | 2 of 30 | 2 of 30 |
+| Recommends a brand of any other subculture in the dataset | 20 of 30 | 7 of 30 | 7 of 30 |
+| Years match the record (within 2 years) | 27 of 30 | 30 of 30 | 30 of 30 |
+| Record's key brands named | 69% | 97% | 99% |
 
-From memory the model put Red Wing into Amekaji, Y-3 into Goth Ninja and Massimo Dutti into Quiet Luxury. It knows the well-documented scenes (Indie Sleaze, Mall Goth, Terrace Casuals) about as well as the records do; the gap is on the niche ones (Acubi, Frutiger Aero, Amekaji). Removing the `WARNING` changed nothing measurable, so the effect comes from the record's brands, years and shops. The run also showed weak points in 9 records, which were checked and corrected afterwards. Method, limits and all 45 answers: [`eval/`](eval/).
+From memory the model put Red Wing into Amekaji, Y-3 into Goth Ninja and Massimo Dutti into Quiet Luxury. It knows the well-documented scenes (Indie Sleaze, Mall Goth, Terrace Casuals) about as well as the records do; the gap is on the niche ones (Acubi, Frutiger Aero, Amekaji). Removing the `WARNING` changed nothing measurable in either run, so the effect comes from the record's brands, years and shops.
+
+The model is also a useful but incomplete reviewer of the data. Given records with planted errors, it called out 13 of 15 wrong dates and 10 of 15 brands from neighbouring scenes, but missed the close ones (ACRONYM in Goth Ninja and Health Goth, Ralph Lauren in Quiet Luxury) and put the planted brand into the outfit in 4 of 15 answers. A wrong record does get passed on, so the data has to be right at the source. The first run also showed weak points in 9 records, which were checked and corrected afterwards. Method, limits and all 105 answers: [`eval/`](eval/).
 
 ## 🪙 Pricing
 - **Cost:** `$0.01` USDC per subculture record
