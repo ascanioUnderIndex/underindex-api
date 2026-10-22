@@ -11,7 +11,7 @@ It's built for AI agents, autonomous personal shoppers and RAG pipelines. Access
 ## 🧠 Why build with UnderIndex?
 Even strong LLMs blur neighbouring aesthetics when asked about niche fashion. They mix *Goth Ninja* with *Techwear*, drift on dates, and pad outfits with generic high-street substitutes, and the answer changes from one run to the next. UnderIndex is a deterministic source of truth:
 - **High signal-to-noise:** Exact key brands, iconic items and historical context.
-- **Anti-hallucination guardrails:** Explicit `WARNING` notes that prevent common era and routing errors.
+- **Boundary notes:** Each record's `Notes` says where the style ends and its neighbours begin (for example Goth Ninja vs. Techwear).
 - **Actionable marketplaces:** Specific destinations (e.g. "Yahoo Auctions Japan via proxy", "Grailed") instead of generic "Online" tags.
 - **Versioned:** Every response carries a `dataset_version`, so you can cache and detect changes.
 
@@ -29,20 +29,21 @@ Same model, same question, asked twice: once from memory, once with the UnderInd
 | Budget (record: $600 - $2500) | €300 to €8,000+ | $600 to $2,500 |
 | Techwear mixed in | Yes: an Acronym shell and Nike Tech Fleece | No: "skip the tactical straps, nylon shells and utility hardware" |
 
-The answer from memory is plausible, which is the problem: nothing in it signals that Acronym and Tech Fleece belong to a different aesthetic. The record's `WARNING` note ("Distinguish from modern Techwear") is what keeps the grounded answer inside the 2009-2014 look.
+The answer from memory is plausible, which is the problem: nothing in it signals that Acronym and Tech Fleece belong to a different aesthetic. The record's brands, items and years are what keep the grounded answer inside the 2009-2014 look: in the evaluation below, the same record with its `WARNING` note removed did just as well.
 
 Method: Claude Opus 5.5, two fresh chats with no memory and no web search, October 2026. In the second chat the record was pasted into the prompt. Full transcripts for this run and for an Acubi run are in [`demo/`](demo/), together with a Claude tool definition that pays for lookups over x402 ([`demo/underindex-tool.mjs`](demo/underindex-tool.mjs)).
 
 ## 📏 Evaluation: 15 subcultures
-The same outfit question for 15 subcultures, 30 fresh chats: each one once from memory and once with the record.
+The same outfit question for 15 subcultures, 45 fresh chats: each one from memory, with the record, and with the record minus its `WARNING` note.
 
-| | From memory | With the record |
-|---|---|---|
-| Recommends a brand the dataset files under a neighbouring subculture | 8 of 15 answers | 1 of 15 |
-| Years match the record (within 2 years) | 13 of 15 | 15 of 15 |
-| Record's key brands named | 71% | 98% |
+| Metric | From memory | With the record | Record without WARNING |
+|:---|:---:|:---:|:---:|
+| Recommends a brand the dataset files under a neighbouring subculture | 8 of 15 answers | 1 of 15 | 1 of 15 |
+| Recommends a brand of any other subculture in the dataset | 11 of 15 | 4 of 15 | 3 of 15 |
+| Years match the record (within 2 years) | 13 of 15 | 15 of 15 | 15 of 15 |
+| Record's key brands named | 71% | 98% | 100% |
 
-From memory the model put Red Wing into Amekaji, Y-3 into Goth Ninja and Massimo Dutti into Quiet Luxury. It knows the well-documented scenes (Indie Sleaze, Mall Goth, Terrace Casuals) about as well as the records do; the gap is on the niche ones (Acubi, Frutiger Aero, Amekaji). The run also showed weak points in 9 records, which were checked and corrected afterwards. Method, limits and all 30 answers: [`eval/`](eval/).
+From memory the model put Red Wing into Amekaji, Y-3 into Goth Ninja and Massimo Dutti into Quiet Luxury. It knows the well-documented scenes (Indie Sleaze, Mall Goth, Terrace Casuals) about as well as the records do; the gap is on the niche ones (Acubi, Frutiger Aero, Amekaji). Removing the `WARNING` changed nothing measurable, so the effect comes from the record's brands, years and shops. The run also showed weak points in 9 records, which were checked and corrected afterwards. Method, limits and all 45 answers: [`eval/`](eval/).
 
 ## 🪙 Pricing
 - **Cost:** `$0.01` USDC per subculture record
