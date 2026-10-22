@@ -53,6 +53,24 @@ With the record in front of it, the model questioned 9 of the 15 records:
 
 **What changed afterwards.** Each point was checked against web sources and the 9 records were corrected in dataset version `9ab6258f9c51` (2026-10-14): Acubi Style adds Acubi Club and moves to $150 - $800; Opium moves to $800 - $5000; Ura-Hara starts in 1993, replaces Number (N)ine with Goodenough and Neighborhood, drops Shenmue and moves to $400 - $2000; Health Goth credits the 2013 Portland Facebook page and drops Vaporwave; Indie Sleaze starts in 2006 and swaps The RealReal for eBay; Whimsigoth drops American McGee’s Alice; Frutiger Aero swaps Mirror’s Edge for Wii Sports; Terrace Casuals swaps The Jam for The Farm; Gyaru labels Liz Lisa as Hime Gyaru and MA*RS as Agejo. The brand-timing note on Oakley and Prada Linea Rossa was left as is. The scores above are for the records as they were during the run (`records.json`).
 
+## Third arm: the record without its WARNING
+
+Asked on r/RAG: is it the record that keeps the model inside the style, or the `WARNING` in its `Notes`? Every `Notes` field in the run held only the WARNING, so the third arm sends the same `records.json` record with `Notes` removed and the same question. 15 new incognito chats, Claude Opus 5.5 on claude.ai, 2026-10-22.
+
+| | From memory | Record with WARNING | Record without WARNING |
+|:---|:---:|:---:|:---:|
+| Record's key brands named | 41/58 (71%) | 57/58 (98%) | 58/58 (100%) |
+| Record's shops named | 30/42 (71%) | 42/42 (100%) | 42/42 (100%) |
+| Years match the record (within 2 years) | 13/15 (87%) | 15/15 (100%) | 15/15 (100%) |
+| Recommends a brand of a subculture the WARNING names | 8/15 (53%), 8 brands | 1/15 (7%), 1 brand | 1/15 (7%), 1 brand |
+| Recommends a brand of any other subculture in the dataset | 11/15 (73%), 18 brands | 4/15 (27%), 6 brands | 3/15 (20%), 3 brands |
+
+"A subculture the WARNING names" is the original neighbour metric. "Any other subculture" is the re-score suggested on r/RAG: brands of every other record in `records.json`, read in context the same way.
+
+**The WARNING made no measurable difference.** Without it the answers stayed inside the style as well as with it. The remaining blends were Nike for Ura-Hara (Harajuku 90s); Converse for Indie Sleaze; Fred Perry and Lacoste for Terrace Casuals, all brands those scenes actually wore. With the WARNING they were Adidas (vintage) and Vans for Ura-Hara (Harajuku 90s); Adidas (vintage) for Health Goth; Dr. Martens and Converse for Indie Sleaze; Dr. Martens for Whimsigoth; Clarks for City Boy. On this run the effect comes from the record's brands, years and shops, not from the warning text. With one run per arm, a difference of one or two answers is noise.
+
+Files: [`answers-nowarning.md`](answers-nowarning.md) (15 answers, verbatim), [`judgements-nowarning.json`](judgements-nowarning.json), [`score-nowarning.mjs`](score-nowarning.mjs). Run `node eval/score.mjs && node eval/score-nowarning.mjs` to rebuild this page.
+
 ## How it was scored
 
 - **Brands and shops**: `score.mjs` checks which of the record's `KeyBrands` and `WhereToBuy` entries appear in the answer (case-insensitive, with a few aliases such as BAPE for A Bathing Ape).
