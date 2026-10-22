@@ -1,0 +1,324 @@
+{
+  "_how": "Hand judgements for the second run (answers-run2.md), same rules and precedents as judgements.json, judgements-unnamed.json and judgements-nowarning.json. Labelled 2026-10-22 against the frozen records.json.",
+  "years": {
+    "goth-ninja/memory": [
+      "took off 2011–2012, peaked 2013–2016",
+      true
+    ],
+    "goth-ninja/grounded": [
+      "late 2000s to early 2010s, 2009–2014",
+      true
+    ],
+    "goth-ninja/nowarning": [
+      "2009–2014, peak 2010–2013",
+      true
+    ],
+    "acubi-style/memory": [
+      "2021–2022, peak 2023–2024",
+      true
+    ],
+    "acubi-style/grounded": [
+      "2021–2022 onward",
+      true
+    ],
+    "acubi-style/nowarning": [
+      "2021 onward",
+      true
+    ],
+    "opium/memory": [
+      "2019, strongest 2021–2024",
+      true
+    ],
+    "opium/grounded": [
+      "2019 to present",
+      true
+    ],
+    "opium/nowarning": [
+      "2019 to present",
+      true
+    ],
+    "ura-hara-harajuku-90s/memory": [
+      "1993–2002 core",
+      true
+    ],
+    "ura-hara-harajuku-90s/grounded": [
+      "1993 to ~2003",
+      true
+    ],
+    "ura-hara-harajuku-90s/nowarning": [
+      "early 90s to 2003–2004",
+      true
+    ],
+    "health-goth/memory": [
+      "2013 to ~2016",
+      true
+    ],
+    "health-goth/grounded": [
+      "2013–2017",
+      true
+    ],
+    "health-goth/nowarning": [
+      "2013–2017",
+      true
+    ],
+    "mall-goth/memory": [
+      "1997 to 2005",
+      true
+    ],
+    "mall-goth/grounded": [
+      "1999 to 2006",
+      true
+    ],
+    "mall-goth/nowarning": [
+      "1999 to 2006",
+      true
+    ],
+    "indie-sleaze/memory": [
+      "2006 to 2012",
+      true
+    ],
+    "indie-sleaze/grounded": [
+      "2008–2012",
+      true
+    ],
+    "indie-sleaze/nowarning": [
+      "2008–2012 (some start 2006–2007)",
+      true
+    ],
+    "blokecore/memory": [
+      "named ~2021, peak 2022–2024",
+      true
+    ],
+    "blokecore/grounded": [
+      "2022 to present",
+      true
+    ],
+    "blokecore/nowarning": [
+      "2022 to now",
+      true
+    ],
+    "quiet-luxury/memory": [
+      "peak 2022–2024",
+      true
+    ],
+    "quiet-luxury/grounded": [
+      "2022 to present",
+      true
+    ],
+    "quiet-luxury/nowarning": [
+      "2022 to present",
+      true
+    ],
+    "whimsigoth/memory": [
+      "late 90s, peak 1996–2002",
+      false
+    ],
+    "whimsigoth/grounded": [
+      "1990 to 1998",
+      true
+    ],
+    "whimsigoth/nowarning": [
+      "1990–1998",
+      true
+    ],
+    "city-boy/memory": [
+      "modern form 2012 onward",
+      true
+    ],
+    "city-boy/grounded": [
+      "2012 to present",
+      true
+    ],
+    "city-boy/nowarning": [
+      "2012 to present",
+      true
+    ],
+    "frutiger-aero-fashion/memory": [
+      "2004–2013",
+      true
+    ],
+    "frutiger-aero-fashion/grounded": [
+      "2004 to 2013",
+      true
+    ],
+    "frutiger-aero-fashion/nowarning": [
+      "2004–2013",
+      true
+    ],
+    "terrace-casuals/memory": [
+      "1977–78 to 1988–89",
+      true
+    ],
+    "terrace-casuals/grounded": [
+      "late 1970s to early 1990s",
+      true
+    ],
+    "terrace-casuals/nowarning": [
+      "late 1970s to early 1990s",
+      true
+    ],
+    "amekaji/memory": [
+      "late 1980s and 1990s, still active",
+      true
+    ],
+    "amekaji/grounded": [
+      "late 1980s to today",
+      true
+    ],
+    "amekaji/nowarning": [
+      "late 80s to present",
+      true
+    ],
+    "gyaru/memory": [
+      "peak 1995–2010, faded early 2010s",
+      true
+    ],
+    "gyaru/grounded": [
+      "1995–2014",
+      true
+    ],
+    "gyaru/nowarning": [
+      "1995 to early-to-mid 2010s",
+      true
+    ]
+  },
+  "named": {
+    "goth-ninja/memory": {
+      "Y-3": "recommended (Y-3 Qasa High as the mid-tier shoe)"
+    },
+    "opium/memory": {
+      "Julius": "recommended (archive label to look at for extra credibility)"
+    },
+    "opium/nowarning": {
+      "Julius": "recommended (worth exploring to push the look further)"
+    },
+    "ura-hara-harajuku-90s/memory": {
+      "A Bathing Ape": "same brand as own line (the record lists A Bathing Ape (90s era); the neighbour spelling escapes the alias table)"
+    },
+    "ura-hara-harajuku-90s/grounded": {
+      "A Bathing Ape": "same brand as own line (the record lists A Bathing Ape (90s era); the neighbour spelling escapes the alias table)"
+    },
+    "ura-hara-harajuku-90s/nowarning": {
+      "A Bathing Ape": "same brand as own line (the record lists A Bathing Ape (90s era); the neighbour spelling escapes the alias table)"
+    },
+    "health-goth/memory": {
+      "ACRONYM": "recommended (high-end techwear-leaning shell)",
+      "Arc'teryx Veilance": "recommended (high-end shell)",
+      "Nike ACG": "recommended (technical shell)"
+    },
+    "mall-goth/memory": {
+      "Dr. Martens": "recommended (1460s or Jadon as shoe option)",
+      "Converse": "recommended (black Converse as shoe option)"
+    },
+    "blokecore/memory": {
+      "C.P. Company": "recommended (overshirt or jacket for a casuals edge)"
+    },
+    "quiet-luxury/memory": {
+      "Massimo Dutti": "recommended (accessible coat and loafers)"
+    },
+    "whimsigoth/memory": {
+      "Dr. Martens": "recommended (1460, Jadon or Mary Janes)"
+    },
+    "whimsigoth/grounded": {
+      "Dr. Martens": "recommended (Doc Martens as footwear)"
+    },
+    "terrace-casuals/memory": {
+      "Fred Perry": "recommended (polo; historically worn by casuals, so defensible)"
+    },
+    "amekaji/memory": {
+      "Red Wing": "recommended (875 or Iron Ranger boots)"
+    }
+  },
+  "unnamed": {
+    "goth-ninja/memory": {
+      "Ann Demeulemeester": "recommended (long cardigan as alternative mid layer)",
+      "Alexander Wang": "recommended (leather jacket, mid tier)",
+      "Helmut Lang (archival)": "recommended (leather jacket, mid tier)",
+      "Nike": "recommended (all-black Roshe Runs as budget shoe)",
+      "Converse": "recommended (black Chuck 70 Hi as budget shoe)"
+    },
+    "goth-ninja/grounded": {
+      "Ann Demeulemeester": "recommended (draped-collar jacket as optional outer layer)"
+    },
+    "goth-ninja/nowarning": {
+      "Off-White": "not a brand (palette colour)"
+    },
+    "acubi-style/memory": {
+      "Off-White": "not a brand (palette colour)"
+    },
+    "acubi-style/grounded": {
+      "Off-White": "not a brand (palette colour)"
+    },
+    "opium/memory": {
+      "Dr. Martens": "recommended (budget shoe)",
+      "Ann Demeulemeester": "recommended (boots that show up a lot)",
+      "Diesel (early 00s)": "recommended (budget flared or stacked jeans)",
+      "Hysteric Glamour": "recommended (archive label to look at)",
+      "Undercover (early seasons)": "recommended (archive label to look at)",
+      "Number (N)ine": "recommended (archive label to look at)",
+      "Demonia": "recommended (budget platforms)"
+    },
+    "ura-hara-harajuku-90s/memory": {
+      "Adidas (vintage)": "recommended (Superstars as period-correct shoe)",
+      "Nike": "recommended (Air Max 95, Dunks)"
+    },
+    "ura-hara-harajuku-90s/grounded": {
+      "Nike": "recommended (Air Force 1, Dunks, Jordan 1)"
+    },
+    "ura-hara-harajuku-90s/nowarning": {
+      "Adidas (vintage)": "recommended (Superstar)",
+      "Nike": "recommended (Dunk, Air Force 1)"
+    },
+    "health-goth/memory": {
+      "Oakley (vintage)": "recommended (wraparound sport sunglasses)",
+      "Adidas (vintage)": "recommended (Tiro track pants, Ultraboost)",
+      "Rick Owens": "recommended (DRKSHDW tee as designer version)",
+      "Nike": "same brand as own line (record lists Nike Gyakusou; answer also suggests Nike Pro, Windrunner, Air Max)"
+    },
+    "health-goth/grounded": {
+      "Adidas (vintage)": "mentioned (only to explain that Y-3 is Yohji Yamamoto with adidas)",
+      "Undercover (early seasons)": "same brand as own line (describes Gyakusou, the Nike x Undercover line the record lists)",
+      "Nike": "same brand as own line (record lists Nike Gyakusou; answer also suggests Nike Pro)"
+    },
+    "health-goth/nowarning": {
+      "Adidas (vintage)": "mentioned (only to explain that Y-3 is Yohji Yamamoto with Adidas)",
+      "Undercover (early seasons)": "same brand as own line (describes Gyakusou)",
+      "Nike": "same brand as own line (record lists Nike Gyakusou; answer also suggests Nike Pro, Huarache, Air Max)"
+    },
+    "indie-sleaze/memory": {
+      "Dr. Martens": "recommended (1460 boots)",
+      "Converse": "recommended (trashed Chuck Taylors)"
+    },
+    "indie-sleaze/grounded": {
+      "Converse": "recommended (beat-up Chuck Taylors)"
+    },
+    "indie-sleaze/nowarning": {
+      "Converse": "recommended (scuffed high-tops)"
+    },
+    "whimsigoth/memory": {
+      "Demonia": "recommended (more dramatic platform)"
+    },
+    "city-boy/memory": {
+      "Clarks": "recommended (Wallabees as alternative shoe)"
+    },
+    "city-boy/nowarning": {
+      "Ralph Lauren": "recommended (secondhand Polo oxford and blazer for the budget tier)"
+    },
+    "frutiger-aero-fashion/memory": {
+      "Adidas (vintage)": "recommended (light-blue Firebird track jacket)",
+      "Nike": "same brand as own line (record lists Nike ACG; answer suggests Air Max)"
+    },
+    "frutiger-aero-fashion/grounded": {
+      "Nike": "same brand as own line (record lists Nike ACG; answer suggests ACG plus Air Max 360)"
+    },
+    "frutiger-aero-fashion/nowarning": {
+      "Nike": "same brand as own line (record lists Nike ACG; answer suggests ACG plus Air Max 360)"
+    },
+    "terrace-casuals/memory": {
+      "Lacoste": "recommended (polo; historically worn by casuals)"
+    },
+    "terrace-casuals/nowarning": {
+      "Lacoste": "recommended (polo in summer; historically worn by casuals)"
+    }
+  }
+}

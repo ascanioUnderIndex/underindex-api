@@ -1,0 +1,78 @@
+{
+  "_how": "Hand judgements for the planted-error test (answers-planted.md, records in planted-records.json). year / brand: 'caught' only when the answer says the planted value is wrong or does not belong; anything else is 'missed'. recommended: whether the answer still puts the planted brand in the outfit. Labelled 2026-10-22.",
+  "goth-ninja": {
+    "year": ["caught", "says 1999–2004 is wrong, dates it 2010–2016, and cites the record's own clues"],
+    "brand": ["missed", "ACRONYM kept as outerwear and bag 'for the techwear edge'"],
+    "recommended": true
+  },
+  "acubi-style": {
+    "year": ["caught", "says 2011 is wrong, dates it to 2021"],
+    "brand": ["caught", "leaves out Juicy Couture as McBling/Y2K, against Acubi's palette"],
+    "recommended": false
+  },
+  "opium": {
+    "year": ["caught", "says 2009 is wrong, label founded around 2019"],
+    "brand": ["caught", "Anti Social Social Club 'doesn't belong', logo hype streetwear"],
+    "recommended": false
+  },
+  "ura-hara-harajuku-90s": {
+    "year": ["caught", "'Mid 80s – Early 90s' is a few years too early, peak mid-to-late 90s"],
+    "brand": ["caught", "Yeezy 'doesn't belong', a 2010s brand"],
+    "recommended": false
+  },
+  "health-goth": {
+    "year": ["caught", "says 2003–2007 is wrong, dates it 2012–2015"],
+    "brand": ["missed", "'the ideal is an ACRONYM jacket'"],
+    "recommended": true
+  },
+  "mall-goth": {
+    "year": ["caught", "says 1989–1996 doesn't fit, dates it 1997–2007"],
+    "brand": ["caught", "Atticus 'is a stretch', 2001 pop-punk label, skipped"],
+    "recommended": false
+  },
+  "indie-sleaze": {
+    "year": ["caught", "says 1998–2002 is off, dates it 2006–2012"],
+    "brand": ["caught", "drops Kate Spade as polished and preppy"],
+    "recommended": false
+  },
+  "blokecore": {
+    "year": ["caught", "'2012 – Present' doesn't match, term from 2021"],
+    "brand": ["caught", "Trapstar 'doesn't really belong'"],
+    "recommended": false
+  },
+  "quiet-luxury": {
+    "year": ["missed", "calls 2012 to present 'a reasonable frame'"],
+    "brand": ["missed", "recommends a Ralph Lauren Purple Label belt; only warns that mainline carries the pony logo"],
+    "recommended": true
+  },
+  "whimsigoth": {
+    "year": ["caught", "says 1980–1988 doesn't match, dates it 1994–1999"],
+    "brand": ["missed", "Heaven by Marc Jacobs kept as a print piece; notes it is 'revival, not period' but recommends it"],
+    "recommended": true
+  },
+  "city-boy": {
+    "year": ["caught", "'2002 doesn't line up', named style dates to 2012"],
+    "brand": ["caught", "Iron Heart 'is heavyweight denim and biker-leaning Americana, not City Boy', left out"],
+    "recommended": false
+  },
+  "frutiger-aero-fashion": {
+    "year": ["caught", "says 1994–2003 doesn't fit its own references, dates it 2004–2013"],
+    "brand": ["caught", "leaves out JNCO as 90s rave and skate"],
+    "recommended": false
+  },
+  "terrace-casuals": {
+    "year": ["caught", "says the late 60s belongs to skinheads, casuals start 1977–78"],
+    "brand": ["missed", "Umbro never mentioned: silently dropped, neither flagged nor recommended"],
+    "recommended": false
+  },
+  "amekaji": {
+    "year": ["missed", "calls 'late 70s to present' a fair dating, citing 1979 repro jeans"],
+    "brand": ["caught", "Nautica JP 'doesn't really belong', closer to City Boy"],
+    "recommended": false
+  },
+  "gyaru": {
+    "year": ["caught", "says 1985–2004 is off, early 1990s to late 2000s"],
+    "brand": ["caught", "Baby, the Stars Shine Bright 'doesn't belong', a Lolita brand"],
+    "recommended": false
+  }
+}

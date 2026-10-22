@@ -134,7 +134,7 @@ ${J.corrections}
 - Matching the record is not the same as being right. The record is the reference here, and the section above shows it had weak points.
 - With the record pasted in, the model mostly repeats it, so the brand and shop rows partly measure that. The neighbour-brand and years rows are the informative ones.
 - A neighbour brand is not always wrong: Fred Perry was worn by terrace casuals, and Dr. Martens are common across goth styles. The metric follows the dataset's own boundaries.
-- One run per arm, one model, 15 subcultures. Answers vary between runs.
+- Two runs per arm (see Second run), one model, 15 subcultures. Answers vary between runs.
 - The record was pasted into the prompt, so this measures what the model does with the data, not how an agent fetches it over x402.
 
 Files: [\`answers/\`](answers/) (all 30 answers, verbatim), [\`questions.json\`](questions.json), [\`records.json\`](records.json) (the records as they were during the run), [\`judgements.json\`](judgements.json), [\`score.mjs\`](score.mjs).

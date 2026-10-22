@@ -1,0 +1,736 @@
+[
+ {
+  "id": 1,
+  "slug": "goth-ninja",
+  "errors": {
+   "years": {
+    "true": "2009 - 2014",
+    "planted": "1999 - 2004"
+   },
+   "brand": {
+    "planted": "ACRONYM",
+    "from": "techwear"
+   }
+  },
+  "record": {
+   "Name": "Goth Ninja",
+   "Years": "1999 - 2004",
+   "Description": "Internet-born aesthetic mixing dark drapery, drop-crotch proportions, and artisanal boots.",
+   "KeyBrands": [
+    "Rick Owens (early 2010s)",
+    "ACRONYM",
+    "Julius",
+    "Damir Doma",
+    "11 by BBS"
+   ],
+   "IconicItems": [
+    "Extra-long draped t-shirts",
+    "Hooded cardigans",
+    "Drop-crotch shorts over leggings",
+    "Geobaskets"
+   ],
+   "MusicGenre": [
+    "Witch House",
+    "Industrial Hip-Hop"
+   ],
+   "Artists": [
+    "Death Grips",
+    "Salem"
+   ],
+   "VideoGames": [
+    "Assassin's Creed",
+    "Dark Souls"
+   ],
+   "WhereToBuy": [
+    "Grailed",
+    "Yahoo Auctions Japan"
+   ],
+   "PriceRange": "$600 - $2500"
+  }
+ },
+ {
+  "id": 2,
+  "slug": "acubi-style",
+  "errors": {
+   "years": {
+    "true": "2021 - Present",
+    "planted": "2011 - Present"
+   },
+   "brand": {
+    "planted": "Juicy Couture",
+    "from": "y2k"
+   }
+  },
+  "record": {
+   "Name": "Acubi Style",
+   "Years": "2011 - Present",
+   "Description": "Minimalist, subversive Korean Y2K focusing on thin layers and neutral tones.",
+   "KeyBrands": [
+    "Hyein Seo",
+    "Juicy Couture",
+    "Thug Club"
+   ],
+   "IconicItems": [
+    "Thin asymmetrical knit tops",
+    "Boleros",
+    "Distressed low-rise parachute pants",
+    "Arm warmers"
+   ],
+   "MusicGenre": [
+    "K-Pop",
+    "Lo-Fi R&B"
+   ],
+   "Artists": [
+    "NewJeans",
+    "PinkPantheress"
+   ],
+   "VideoGames": [],
+   "WhereToBuy": [
+    "Musinsa",
+    "YesStyle",
+    "Depop"
+   ],
+   "PriceRange": "$100 - $400"
+  }
+ },
+ {
+  "id": 3,
+  "slug": "opium",
+  "errors": {
+   "years": {
+    "true": "2019 - Present",
+    "planted": "2009 - Present"
+   },
+   "brand": {
+    "planted": "Anti Social Social Club",
+    "from": "hypebeast-streetwear"
+   }
+  },
+  "record": {
+   "Name": "Opium",
+   "Years": "2009 - Present",
+   "Description": "Dark, avant-garde streetwear characterized by distorted silhouettes and heavy leather.",
+   "KeyBrands": [
+    "Rick Owens",
+    "Anti Social Social Club",
+    "Balenciaga",
+    "Alyx",
+    "Givenchy (Matthew Williams era)"
+   ],
+   "IconicItems": [
+    "Exaggerated silhouettes",
+    "Chunky leather boots",
+    "Distressed black denim",
+    "Leather trench coats"
+   ],
+   "MusicGenre": [
+    "Rage Rap",
+    "Experimental Hip-Hop"
+   ],
+   "Artists": [
+    "Playboi Carti",
+    "Ken Carson",
+    "Destroy Lonely"
+   ],
+   "VideoGames": [
+    "Cyberpunk 2077",
+    "Vampire: The Masquerade"
+   ],
+   "WhereToBuy": [
+    "SSENSE",
+    "Grailed",
+    "Rick Owens boutiques"
+   ],
+   "PriceRange": "$800 - $3500"
+  }
+ },
+ {
+  "id": 4,
+  "slug": "ura-hara-harajuku-90s",
+  "errors": {
+   "years": {
+    "true": "Mid 90s - Early 00s",
+    "planted": "Mid 80s - Early 90s"
+   },
+   "brand": {
+    "planted": "Yeezy",
+    "from": "hypebeast-streetwear"
+   }
+  },
+  "record": {
+   "Name": "Ura-Hara (Harajuku 90s)",
+   "Years": "Mid 80s - Early 90s",
+   "Description": "Pioneering Tokyo streetwear blending punk, hip-hop, and DIY aesthetics.",
+   "KeyBrands": [
+    "A Bathing Ape (90s era)",
+    "Yeezy",
+    "Undercover (early seasons)",
+    "Number (N)ine",
+    "WTAPS"
+   ],
+   "IconicItems": [
+    "Graphic heavyweight tees",
+    "Relaxed fit selvedge denim",
+    "Varsity jackets with leather sleeves"
+   ],
+   "MusicGenre": [
+    "Hip-hop",
+    "Punk Rock"
+   ],
+   "Artists": [
+    "NIGO",
+    "Hiroshi Fujiwara",
+    "Beastie Boys"
+   ],
+   "VideoGames": [
+    "Jet Set Radio",
+    "Shenmue"
+   ],
+   "WhereToBuy": [
+    "Yahoo Auctions Japan",
+    "Grailed"
+   ],
+   "PriceRange": "$300 - $1500"
+  }
+ },
+ {
+  "id": 5,
+  "slug": "health-goth",
+  "errors": {
+   "years": {
+    "true": "2013 - 2017",
+    "planted": "2003 - 2007"
+   },
+   "brand": {
+    "planted": "ACRONYM",
+    "from": "techwear"
+   }
+  },
+  "record": {
+   "Name": "Health Goth",
+   "Years": "2003 - 2007",
+   "Description": "Monochromatic, dystopian athletic darkwear born on Tumblr, blending sportswear with industrial themes.",
+   "KeyBrands": [
+    "Y-3",
+    "ACRONYM",
+    "Nike (Gyakusou)",
+    "Cottweiler",
+    "Alexander Wang"
+   ],
+   "IconicItems": [
+    "Neoprene hoodies",
+    "Moisture-wicking compression tights",
+    "Chunky black trainers",
+    "Sterile athletic visors"
+   ],
+   "MusicGenre": [
+    "Vaporwave",
+    "Industrial",
+    "Techno"
+   ],
+   "Artists": [
+    "Death Grips",
+    "Gesaffelstein",
+    "Arca"
+   ],
+   "VideoGames": [
+    "Mirror's Edge",
+    "Deus Ex: Human Revolution"
+   ],
+   "WhereToBuy": [
+    "Grailed",
+    "eBay",
+    "Depop"
+   ],
+   "PriceRange": "$150 - $700"
+  }
+ },
+ {
+  "id": 6,
+  "slug": "mall-goth",
+  "errors": {
+   "years": {
+    "true": "1999 - 2006",
+    "planted": "1989 - 1996"
+   },
+   "brand": {
+    "planted": "Atticus",
+    "from": "emo"
+   }
+  },
+  "record": {
+   "Name": "Mall Goth",
+   "Years": "1989 - 1996",
+   "Description": "Nu-metal inspired mall rat aesthetic heavily commercialized by early 2000s Hot Topic.",
+   "KeyBrands": [
+    "Tripp NYC",
+    "Atticus",
+    "Lip Service",
+    "JNCO",
+    "Demonia"
+   ],
+   "IconicItems": [
+    "Extremely wide-leg strap pants",
+    "Grommet belts",
+    "Striped arm warmers",
+    "Ball chain necklaces"
+   ],
+   "MusicGenre": [
+    "Nu-Metal",
+    "Industrial Rock"
+   ],
+   "Artists": [
+    "Slipknot",
+    "Korn",
+    "Evanescence"
+   ],
+   "VideoGames": [
+    "Vampire: The Masquerade - Bloodlines",
+    "Silent Hill 2"
+   ],
+   "WhereToBuy": [
+    "Depop",
+    "eBay",
+    "Hot Topic"
+   ],
+   "PriceRange": "$100 - $400"
+  }
+ },
+ {
+  "id": 7,
+  "slug": "indie-sleaze",
+  "errors": {
+   "years": {
+    "true": "2008 - 2012",
+    "planted": "1998 - 2002"
+   },
+   "brand": {
+    "planted": "Kate Spade",
+    "from": "twee"
+   }
+  },
+  "record": {
+   "Name": "Indie Sleaze",
+   "Years": "1998 - 2002",
+   "Description": "Messy, nocturnal bloghouse aesthetic mixing vintage thrifting with American Apparel basics.",
+   "KeyBrands": [
+    "American Apparel",
+    "Kate Spade",
+    "Cheap Monday",
+    "Ray-Ban"
+   ],
+   "IconicItems": [
+    "Deep V-neck tees",
+    "Metallic leggings",
+    "Smudged eyeliner",
+    "Skinny jeans"
+   ],
+   "MusicGenre": [
+    "Bloghouse",
+    "Electroclash",
+    "Indie Pop"
+   ],
+   "Artists": [
+    "Justice",
+    "Uffie",
+    "Crystal Castles"
+   ],
+   "VideoGames": [],
+   "WhereToBuy": [
+    "Depop",
+    "The RealReal",
+    "Thrift stores"
+   ],
+   "PriceRange": "$50 - $300"
+  }
+ },
+ {
+  "id": 8,
+  "slug": "blokecore",
+  "errors": {
+   "years": {
+    "true": "2022 - Present",
+    "planted": "2012 - Present"
+   },
+   "brand": {
+    "planted": "Trapstar",
+    "from": "uk-roadman"
+   }
+  },
+  "record": {
+   "Name": "Blokecore",
+   "Years": "2012 - Present",
+   "Description": "Modern revival of British pub and football casuals culture with vintage jerseys.",
+   "KeyBrands": [
+    "Adidas (vintage)",
+    "Trapstar",
+    "Umbro",
+    "Kappa",
+    "Stone Island (casuals era)"
+   ],
+   "IconicItems": [
+    "90s/00s vintage football jerseys",
+    "Straight-leg classic denim (Levi's 501)",
+    "Adidas Samba/Gazelle"
+   ],
+   "MusicGenre": [
+    "Britpop",
+    "UK Garage",
+    "Indie Rock"
+   ],
+   "Artists": [
+    "Oasis",
+    "Blur",
+    "slowthai"
+   ],
+   "VideoGames": [
+    "FIFA",
+    "Pro Evolution Soccer 6"
+   ],
+   "WhereToBuy": [
+    "eBay",
+    "Depop",
+    "Classic Football Shirts"
+   ],
+   "PriceRange": "$150 - $400"
+  }
+ },
+ {
+  "id": 9,
+  "slug": "quiet-luxury",
+  "errors": {
+   "years": {
+    "true": "2022 - Present",
+    "planted": "2012 - Present"
+   },
+   "brand": {
+    "planted": "Ralph Lauren",
+    "from": "old-money"
+   }
+  },
+  "record": {
+   "Name": "Quiet Luxury",
+   "Years": "2012 - Present",
+   "Description": "Stealth wealth aesthetics focusing heavily on ultra-premium materials, perfect tailoring, and zero visible logos.",
+   "KeyBrands": [
+    "Loro Piana",
+    "Ralph Lauren",
+    "Brunello Cucinelli",
+    "The Row",
+    "Zegna"
+   ],
+   "IconicItems": [
+    "Vicuña wool sweaters",
+    "Unbranded tailored linen trousers",
+    "Classic leather loafers",
+    "Cashmere overcoats"
+   ],
+   "MusicGenre": [
+    "Classical",
+    "Jazz",
+    "Adult Contemporary"
+   ],
+   "Artists": [
+    "Max Richter",
+    "Ludovico Einaudi",
+    "Sade"
+   ],
+   "VideoGames": [],
+   "WhereToBuy": [
+    "Official brand sites",
+    "Mr Porter",
+    "Net-A-Porter"
+   ],
+   "PriceRange": "$1500 - $10000+"
+  }
+ },
+ {
+  "id": 10,
+  "slug": "whimsigoth",
+  "errors": {
+   "years": {
+    "true": "1990 - 1998",
+    "planted": "1980 - 1988"
+   },
+   "brand": {
+    "planted": "Heaven by Marc Jacobs",
+    "from": "fairy-grunge"
+   }
+  },
+  "record": {
+   "Name": "Whimsigoth",
+   "Years": "1980 - 1988",
+   "Description": "Celestial, mystical 90s aesthetic blending bohemian silhouettes with dark romantic gothic elements.",
+   "KeyBrands": [
+    "Betsey Johnson (90s)",
+    "Heaven by Marc Jacobs",
+    "Anna Sui (90s)",
+    "Lip Service"
+   ],
+   "IconicItems": [
+    "Crushed velvet maxi dresses",
+    "Celestial sun/moon prints",
+    "Corset tops",
+    "Chunky silver rings"
+   ],
+   "MusicGenre": [
+    "Ethereal Wave",
+    "Dream Pop",
+    "Alternative Rock"
+   ],
+   "Artists": [
+    "Cocteau Twins",
+    "The Smashing Pumpkins",
+    "Stevie Nicks"
+   ],
+   "VideoGames": [
+    "American McGee's Alice"
+   ],
+   "WhereToBuy": [
+    "Etsy",
+    "Depop",
+    "Vintage boutiques"
+   ],
+   "PriceRange": "$150 - $500"
+  }
+ },
+ {
+  "id": 11,
+  "slug": "city-boy",
+  "errors": {
+   "years": {
+    "true": "2012 - Present",
+    "planted": "2002 - Present"
+   },
+   "brand": {
+    "planted": "Iron Heart",
+    "from": "amekaji"
+   }
+  },
+  "record": {
+   "Name": "City Boy",
+   "Years": "2002 - Present",
+   "Description": "Japanese interpretation of American traditional prep with highly oversized, relaxed, and slouchy silhouettes.",
+   "KeyBrands": [
+    "Nanamica",
+    "Iron Heart",
+    "Beams Plus",
+    "AURALEE",
+    "Comoli",
+    "Nautica JP"
+   ],
+   "IconicItems": [
+    "Oversized oxford button-downs",
+    "Wide-leg tailored chinos",
+    "Unstructured navy blazers",
+    "New Balance 990s"
+   ],
+   "MusicGenre": [
+    "City Pop",
+    "Lo-Fi Hip Hop",
+    "Jazz Rap"
+   ],
+   "Artists": [
+    "Tatsuro Yamashita",
+    "Nujabes",
+    "A Tribe Called Quest"
+   ],
+   "VideoGames": [
+    "Persona 5"
+   ],
+   "WhereToBuy": [
+    "Yahoo Auctions Japan",
+    "SSENSE",
+    "Haven"
+   ],
+   "PriceRange": "$300 - $1200"
+  }
+ },
+ {
+  "id": 12,
+  "slug": "frutiger-aero-fashion",
+  "errors": {
+   "years": {
+    "true": "2004 - 2013",
+    "planted": "1994 - 2003"
+   },
+   "brand": {
+    "planted": "JNCO",
+    "from": "cyber-y2k"
+   }
+  },
+  "record": {
+   "Name": "Frutiger Aero Fashion",
+   "Years": "1994 - 2003",
+   "Description": "Tech-optimistic aesthetic defined by glossy textures, translucent fabrics, and aquatic colors.",
+   "KeyBrands": [
+    "Oakley (vintage software era)",
+    "JNCO",
+    "Prada Linea Rossa (early 00s)",
+    "Nike ACG"
+   ],
+   "IconicItems": [
+    "Translucent technical jackets",
+    "Aqua/blue tinted sunglasses",
+    "Glossy synthetic fabrics",
+    "Ergonomic sneakers"
+   ],
+   "MusicGenre": [
+    "Ambient",
+    "Electropop"
+   ],
+   "Artists": [
+    "Owl City",
+    "Coldplay"
+   ],
+   "VideoGames": [
+    "Mirror's Edge",
+    "The Sims 3"
+   ],
+   "WhereToBuy": [
+    "eBay",
+    "Depop"
+   ],
+   "PriceRange": "$200 - $700"
+  }
+ },
+ {
+  "id": 13,
+  "slug": "terrace-casuals",
+  "errors": {
+   "years": {
+    "true": "Late 70s - Early 90s",
+    "planted": "Late 60s - Early 80s"
+   },
+   "brand": {
+    "planted": "Umbro",
+    "from": "blokecore"
+   }
+  },
+  "record": {
+   "Name": "Terrace Casuals",
+   "Years": "Late 60s - Early 80s",
+   "Description": "British football-terrace look built on European designer sportswear and rare trainers.",
+   "KeyBrands": [
+    "Stone Island",
+    "Umbro",
+    "C.P. Company",
+    "Sergio Tacchini",
+    "Fila",
+    "Adidas"
+   ],
+   "IconicItems": [
+    "Designer track tops",
+    "Adidas city-series trainers",
+    "Goggle jackets",
+    "Compass-badge knitwear"
+   ],
+   "MusicGenre": [
+    "Madchester",
+    "Post-Punk"
+   ],
+   "Artists": [
+    "The Stone Roses",
+    "Happy Mondays",
+    "The Jam"
+   ],
+   "VideoGames": [],
+   "WhereToBuy": [
+    "eBay",
+    "Vinted",
+    "Grailed"
+   ],
+   "PriceRange": "$150 - $900"
+  }
+ },
+ {
+  "id": 14,
+  "slug": "amekaji",
+  "errors": {
+   "years": {
+    "true": "Late 80s - Present",
+    "planted": "Late 70s - Present"
+   },
+   "brand": {
+    "planted": "Nautica JP",
+    "from": "city-boy"
+   }
+  },
+  "record": {
+   "Name": "Amekaji",
+   "Years": "Late 70s - Present",
+   "Description": "Japanese reproduction of mid-century American casual and military clothing, made by Japanese mills and brands.",
+   "KeyBrands": [
+    "The Real McCoy's",
+    "Nautica JP",
+    "Kapital",
+    "Studio D'Artisan",
+    "Iron Heart",
+    "Buzz Rickson's"
+   ],
+   "IconicItems": [
+    "Reproduction selvedge jeans",
+    "Loopwheel sweatshirts",
+    "Military flight jackets",
+    "Engineer boots"
+   ],
+   "MusicGenre": [],
+   "Artists": [],
+   "VideoGames": [],
+   "WhereToBuy": [
+    "Yahoo Auctions Japan",
+    "Grailed",
+    "Official brand sites"
+   ],
+   "PriceRange": "$250 - $1500"
+  }
+ },
+ {
+  "id": 15,
+  "slug": "gyaru",
+  "errors": {
+   "years": {
+    "true": "1995 - 2014",
+    "planted": "1985 - 2004"
+   },
+   "brand": {
+    "planted": "Baby, the Stars Shine Bright",
+    "from": "lolita"
+   }
+  },
+  "record": {
+   "Name": "Gyaru",
+   "Years": "1985 - 2004",
+   "Description": "Glamorous Shibuya youth style of tanned skin, bleached hair and bold, body-conscious outfits.",
+   "KeyBrands": [
+    "Alba Rosa",
+    "Baby, the Stars Shine Bright",
+    "Cecil McBee",
+    "Liz Lisa",
+    "MA*RS"
+   ],
+   "IconicItems": [
+    "Platform boots",
+    "Hibiscus-print mini dresses",
+    "Leopard-print tops",
+    "Loose socks"
+   ],
+   "MusicGenre": [
+    "Eurobeat",
+    "J-Pop"
+   ],
+   "Artists": [
+    "Namie Amuro",
+    "Ayumi Hamasaki",
+    "Koda Kumi"
+   ],
+   "VideoGames": [],
+   "WhereToBuy": [
+    "Yahoo Auctions Japan",
+    "Mercari Japan",
+    "Depop"
+   ],
+   "PriceRange": "$60 - $400"
+  }
+ }
+]

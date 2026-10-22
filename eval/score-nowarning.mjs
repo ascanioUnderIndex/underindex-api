@@ -143,9 +143,9 @@ ${table}
 
 "A subculture the WARNING names" is the original neighbour metric. "Any other subculture" is the re-score suggested on r/RAG: brands of every other record in \`records.json\`, read in context the same way.
 
-**The WARNING made no measurable difference.** Without it the answers stayed inside the style as well as with it. The remaining blends were ${blends("nowarning")}, all brands those scenes actually wore. With the WARNING they were ${blends("grounded")}. On this run the effect comes from the record's brands, years and shops, not from the warning text. With one run per arm, a difference of one or two answers is noise.
+**The WARNING made no measurable difference.** Without it the answers stayed inside the style as well as with it. The remaining blends were ${blends("nowarning")}, all brands those scenes actually wore. With the WARNING they were ${blends("grounded")}. On this run the effect comes from the record's brands, years and shops, not from the warning text. On one run a difference of one or two answers is noise; the second run below repeats all three arms.
 
-Files: [\`answers-nowarning.md\`](answers-nowarning.md) (15 answers, verbatim), [\`judgements-nowarning.json\`](judgements-nowarning.json), [\`score-nowarning.mjs\`](score-nowarning.mjs). Run \`node eval/score.mjs && node eval/score-nowarning.mjs\` to rebuild this page.
+Files: [\`answers-nowarning.md\`](answers-nowarning.md) (15 answers, verbatim), [\`judgements-nowarning.json\`](judgements-nowarning.json), [\`score-nowarning.mjs\`](score-nowarning.mjs).
 
 `;
 const readme = fs.readFileSync(dir + "README.md", "utf8").replace(/## Third arm:[\s\S]*?(?=## How it was scored)/, "");
