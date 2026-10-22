@@ -91,6 +91,12 @@ GET https://underindex-api.onrender.com/openapi.json
 ```
 Describes the paid route with `x-payment-info` and lists every valid slug as the `enum` of the `name` parameter, so an agent can build a call without fetching the catalog first. Registries such as [x402scan](https://www.x402scan.com) read this file.
 
+### 6. x402 manifest (free)
+```http
+GET https://underindex-api.onrender.com/.well-known/x402
+```
+Points crawlers at the paid route (one example URL per form, each answers `402` when probed) and at the OpenAPI document. It repeats no prices: the `402` response is the authority on payment terms.
+
 **Payment flow (standard x402 v2, handled automatically by any x402 client):**
 1. The client sends a GET request.
 2. The server replies `402 Payment Required` with a base64 `PAYMENT-REQUIRED` header (price, network, asset, payTo).
