@@ -95,7 +95,7 @@ Describes the paid route with `x-payment-info` and lists every valid slug as the
 ```http
 GET https://underindex-api.onrender.com/.well-known/x402
 ```
-Points crawlers at the paid route (one example URL per form, each answers `402` when probed) and at the OpenAPI document. It repeats no prices: the `402` response is the authority on payment terms.
+Points crawlers at the paid route (one example URL per form, each answers `402` when probed; `routeTemplate` marks the example as standing for every slug) and at the OpenAPI document. It repeats no prices: the `402` response is the authority on payment terms.
 
 **Payment flow (standard x402 v2, handled automatically by any x402 client):**
 1. The client sends a GET request.
