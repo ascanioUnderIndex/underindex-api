@@ -1,0 +1,62 @@
+{
+  "_how": "Hand judgements for the no-WARNING arm (answers-nowarning.md), same rules as judgements.json and judgements-unnamed.json. years: does the answer's core window match the record's within 2 years at each end? named / unnamed: every neighbour hit read in context; only labels starting with 'recommended' count as a blend. 'not a brand' = used as a colour. 'same brand as own line' = the record itself lists that brand or a line of it. Labelled 2026-10-22 against the frozen records.json.",
+  "years": {
+    "goth-ninja": ["circa 2009–2014, peak 2011–2013", true],
+    "acubi-style": ["took shape around 2021, spread 2022–2023, '2021 – Present' matches", true],
+    "opium": ["2019 to present, peak 2021–2023", true],
+    "ura-hara-harajuku-90s": ["early 1990s (Nowhere 1993) to the early-to-mid 2000s, peak mid-to-late 90s", true],
+    "health-goth": ["2013 to 2016–17", true],
+    "mall-goth": ["1999 to 2006", true],
+    "indie-sleaze": ["2008–2012 (some stretch to 2006–2013)", true],
+    "blokecore": ["2022 to present", true],
+    "quiet-luxury": ["2022 to present, peak 2023", true],
+    "whimsigoth": ["1990 to 1998, stretched to about 2000", true],
+    "city-boy": ["2012 to present", true],
+    "frutiger-aero-fashion": ["2004 to 2013", true],
+    "terrace-casuals": ["1978 to the early 90s", true],
+    "amekaji": ["late 80s to present (roots in the mid-1970s)", true],
+    "gyaru": ["1995–2014", true]
+  },
+  "named": {
+    "goth-ninja/nowarning": {
+      "ACRONYM": "mentioned (history: 'its influence later carried into the techwear crowd (Acronym...)')"
+    },
+    "ura-hara-harajuku-90s/nowarning": {
+      "A Bathing Ape": "same brand as own line (the record lists A Bathing Ape (90s era); the neighbour's spelling escapes the alias table)"
+    },
+    "blokecore/nowarning": {
+      "C.P. Company": "mentioned (history of the casuals era, not suggested for the outfit)",
+      "Sergio Tacchini": "mentioned (history of the casuals era, not suggested for the outfit)"
+    },
+    "terrace-casuals/nowarning": {
+      "Fred Perry": "recommended (polo; historically worn by casuals, so defensible)"
+    }
+  },
+  "unnamed": {
+    "goth-ninja/nowarning": {
+      "Off-White": "not a brand (palette colour)"
+    },
+    "acubi-style/nowarning": {
+      "Off-White": "not a brand (palette colour)"
+    },
+    "ura-hara-harajuku-90s/nowarning": {
+      "Nike": "recommended (white Air Force 1 lows or Dunks; historically accurate for the scene)"
+    },
+    "health-goth/nowarning": {
+      "Undercover (early seasons)": "same brand as own line (describes Gyakusou, Undercover's line for Nike, which the record lists)",
+      "Nike": "same brand as own line (record lists Nike Gyakusou; answer also suggests Nike Pro tights, Air Max 95, Air Presto)"
+    },
+    "indie-sleaze/nowarning": {
+      "Converse": "recommended (scuffed Converse Chuck Taylors)"
+    },
+    "city-boy/nowarning": {
+      "Off-White": "not a brand (palette colour)"
+    },
+    "frutiger-aero-fashion/nowarning": {
+      "Nike": "same brand as own line (record lists Nike ACG; answer also suggests Air Max 360, Nike Free)"
+    },
+    "terrace-casuals/nowarning": {
+      "Lacoste": "recommended (Lacoste polo; historically worn by casuals)"
+    }
+  }
+}
