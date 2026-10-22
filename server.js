@@ -151,6 +151,20 @@ app.get("/openapi.json", (req, res) => {
   );
 });
 
+// FREE: x402 manifest, the first thing crawlers fetch. Bare pointers to URLs that answer 402 when probed
+// (the shape proposed in x402 #2979); payment terms stay in the live 402, so the two cannot drift apart.
+app.get("/.well-known/x402", (req, res) => {
+  const origin = `${req.protocol}://${req.get("host")}`;
+  res.json({
+    x402Version: 2,
+    resources: [
+      { url: `${origin}/api/subculture/${SAMPLE_SLUG}`, method: "GET" },
+      { url: `${origin}/api/subculture?name=${SAMPLE_SLUG}`, method: "GET" },
+    ],
+    openapi: `${origin}/openapi.json`,
+  });
+});
+
 // FREE: landing page for people who arrive from a directory or registry
 app.get("/", (req, res) => {
   res.sendFile(fileURLToPath(new URL("./landing.html", import.meta.url)));
