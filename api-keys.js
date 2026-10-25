@@ -19,7 +19,8 @@ export function parseApiKeys(spec = "") {
       const i = entry.indexOf(":");
       const partner = entry.slice(0, i).trim();
       const key = entry.slice(i + 1).trim();
-      if (i < 1 || !/^[a-z0-9-]+$/i.test(partner)) throw new Error(`API_KEYS: entry needs the form partner:key (got "${partner || "?"}:…")`);
+      // Never echo the value: without a colon the "partner" part would be the key itself
+      if (i < 1 || !/^[a-z0-9-]+$/i.test(partner)) throw new Error("API_KEYS: each entry needs the form partner:key, e.g. apibase:<key>");
       if (key.length < MIN_KEY_LENGTH) throw new Error(`API_KEYS: the key for ${partner} is shorter than ${MIN_KEY_LENGTH} characters`);
       return { partner, hash: sha256(key) };
     });
