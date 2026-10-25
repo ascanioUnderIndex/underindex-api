@@ -53,6 +53,7 @@ The model is also a useful but incomplete reviewer of the data. Given records wi
 - **Network:** Base (`eip155:8453`). To try the flow for free, self-host the server: it starts on Base Sepolia testnet by default.
 - You are only charged when the server returns data. An unknown name returns `404` and is never settled.
 - **Free allowance:** 3 records per day per client at `/api/free/subculture/{slug}`, no wallet needed.
+- **Platforms and aggregators:** if you call providers with your own key rather than paying per call over x402, ask for a partner API key (free trial, then a monthly plan). Send it as `Authorization: Bearer <key>` or `X-API-Key: <key>` on the same paid routes; no wallet or 402 round trip.
 
 ---
 
@@ -138,7 +139,7 @@ console.log(await res.json());
 npm install
 cp .env.example .env   # fill in values
 npm start
-npm test               # dataset unit tests (no network)
+npm test               # unit tests (no network)
 ```
 
 | Variable | Required | Notes |
@@ -150,6 +151,7 @@ npm test               # dataset unit tests (no network)
 | `PAY_TO` | no | Receiving address |
 | `PRICE_USD` | no | Default `$0.01` |
 | `RAPIDAPI_SECRET` | no | Lets RapidAPI marketplace traffic skip x402 |
+| `API_KEYS` | no | Partner keys that skip x402, as `partner:key,partner2:key2` (each key at least 24 characters). Requests without a key still get the `402`; an unknown key gets `401`. Each record served logs `key: <partner> <slug> (<n> this month)` |
 | `DATASET_REFRESH_MS` | no | Airtable snapshot refresh interval, default 10 minutes |
 | `FREE_PER_DAY` | no | Free records per client per day at `/api/free/subculture/{slug}`, default `3`; `0` disables the route |
 

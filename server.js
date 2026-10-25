@@ -11,6 +11,7 @@ import { declareDiscoveryExtension } from "@x402/extensions/bazaar";
 import { createCdpFacilitatorClient } from "@coinbase/cdp-sdk/x402";
 import { createDataset } from "./dataset.js";
 import { createFreeQuota } from "./free-quota.js";
+import { apiKeyGate, createApiKeys } from "./api-keys.js";
 import { buildOpenApi, EXAMPLE_RECORD, RECORD_DESCRIPTION } from "./openapi.js";
 
 // ---------------------------------------------------------------------------
@@ -224,7 +225,11 @@ const x402 = paymentMiddleware(
   },
   new x402ResourceServer(network.facilitator()).register(network.caip2, new ExactEvmScheme()),
 );
-app.use((req, res, next) => (isRapidApi(req) ? next() : x402(req, res, next)));
+// Partner keys (API_KEYS) skip x402 too: for platforms that bill their own users and call providers with a key.
+const apiKeys = createApiKeys({ spec: process.env.API_KEYS });
+if (apiKeys.size) console.log(`API keys: ${apiKeys.size} partner key(s) loaded`);
+const gate = apiKeyGate({ apiKeys, paywall: x402, isPaidPath: (p) => p === "/api/subculture" || p.startsWith("/api/subculture/") });
+app.use((req, res, next) => (isRapidApi(req) ? next() : gate(req, res, next)));
 
 app.get("/api/subculture/:name", (req, res) => {
   res.json({ ...res.locals.entry, dataset_version: dataset.version });
