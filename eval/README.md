@@ -92,6 +92,15 @@ All three arms again, 45 new incognito chats on 2026-10-22 with the same prompts
 
 Across both runs the record cuts named-neighbour blends from 17/30 (57%) to 2/30 (7%) with the WARNING and 2/30 (7%) without it, and blends from any other subculture from 20/30 (67%) to 7/30 (23%) and 7/30 (23%). The second run reproduces the first: the record does the work, and the WARNING adds nothing measurable.
 
+**Split by the corrected records.** Suggested on r/RAG: the 9 records the model questioned in the first run were corrected afterwards, but every run scores the frozen originals. Both runs; "with the record" counts the two record arms together.
+
+| Records | Named neighbour, from memory | Named neighbour, with the record | Any other subculture, from memory | Any other subculture, with the record |
+|:---|:---:|:---:|:---:|:---:|
+| 9 later corrected | 7/18 | 4/36 | 14/18 | 11/36 |
+| 6 unchanged | 10/12 | 0/24 | 6/12 | 3/24 |
+
+With the record in context, 4 of the 4 named-neighbour blends and 11 of the 14 any-subculture blends come from the 9 records that were later corrected. The 6 unchanged records are not simply the easy ones: from memory they pick up a named neighbour's brand more often (10/12 against 7/18). With the record in context, the blending that is left tracks the quality of the record.
+
 Files: [`answers-run2.md`](answers-run2.md) (45 answers, verbatim), [`judgements-run2.json`](judgements-run2.json), [`score-run2.mjs`](score-run2.mjs).
 
 ## Planted-error test
@@ -124,6 +133,15 @@ Suggested after the r/RAG thread: the model questioned 9 of the 15 records in th
 | 15 | Gyaru | 1985 - 2004 (was 1995 - 2014) | yes | Baby, the Stars Shine Bright (lolita) | yes | no |
 
 **As a reviewer of its own source, the model catches most errors but not the dangerous ones.** It caught the clearly wrong dates and the brands from obviously different scenes, usually citing the record's own clues (artists or games that postdate the planted years). The brands it missed were ACRONYM in Goth Ninja, ACRONYM in Health Goth, Ralph Lauren in Quiet Luxury, Heaven by Marc Jacobs in Whimsigoth, Umbro in Terrace Casuals: the close neighbours, the same kind of blending the dataset exists to prevent. In 4 of 15 answers the planted brand went straight into the outfit. The two missed dates, Quiet Luxury (2012 - Present) and Amekaji (Late 70s - Present), are the shifts that stay plausible because the style has older roots, so they are weaker planted errors than the other thirteen.
+
+**Detection against the recommendation.** Suggested on r/RAG: the two counts above do not show how they overlap.
+
+| Planted brand | Recommended | Left out |
+|:---|:---:|:---:|
+| Called out | 0 | 10 |
+| Not called out | 4 | 1 |
+
+When the model called the planted brand out, it always left it out of the outfit; every planted brand it recommended was one it had not called out. The only brand dropped without comment was Umbro in Terrace Casuals. Two of the recommended ones are borderline: in Whimsigoth the answer calls Heaven by Marc Jacobs "revival, not period" and still uses it, and in Quiet Luxury it warns about the Ralph Lauren logo but keeps a Purple Label belt. Neither says the brand does not belong, so both count as not called out; under a looser rule they would be called out and still recommended.
 
 Files: [`answers-planted.md`](answers-planted.md) (15 answers, verbatim), [`planted-records.json`](planted-records.json), [`judgements-planted.json`](judgements-planted.json), [`score-planted.mjs`](score-planted.mjs). Run `node eval/score.mjs && node eval/score-nowarning.mjs && node eval/score-run2.mjs && node eval/score-planted.mjs` to rebuild this page.
 

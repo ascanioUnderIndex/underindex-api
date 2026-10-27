@@ -126,6 +126,23 @@ console.log("run-2 blends:");
 for (const r of rows.filter((x) => x.run === 2 && (x.namedRec.length || x.unnamedRec.length)))
   console.log(`  ${r.q.slug}/${r.arm}: named [${r.namedRec.join(", ")}] unnamed [${r.unnamedRec.join(", ")}]`);
 
+// Suggested on r/RAG: the 9 records the model questioned in run 1 were corrected afterwards, but every run scores
+// the frozen originals, so split the blends by those 9 against the 6 left unchanged
+const corrected = new Set(Object.keys(J.record_flags));
+const splitCell = (arms, inCorrected, f) => {
+  const r = rows.filter((x) => arms.includes(x.arm) && corrected.has(x.q.slug) === inCorrected);
+  return `${r.filter(f).length}/${r.length}`;
+};
+const namedBlend = (x) => x.namedRec.length > 0, otherBlend = (x) => x.unnamedRec.length > 0;
+const nCorrected = Q.filter((q) => corrected.has(q.slug)).length, nUnchanged = Q.length - nCorrected;
+let splitTable = "| Records | Named neighbour, from memory | Named neighbour, with the record | Any other subculture, from memory | Any other subculture, with the record |\n|:---|:---:|:---:|:---:|:---:|\n";
+for (const [label, inC] of [[`${nCorrected} later corrected`, true], [`${nUnchanged} unchanged`, false]])
+  splitTable += `| ${label} | ${splitCell(["memory"], inC, namedBlend)} | ${splitCell(["grounded", "nowarning"], inC, namedBlend)} | ${splitCell(["memory"], inC, otherBlend)} | ${splitCell(["grounded", "nowarning"], inC, otherBlend)} |\n`;
+const recArms = rows.filter((x) => x.arm !== "memory");
+const recNamed = recArms.filter(namedBlend), recOther = recArms.filter(otherBlend);
+const fromCorrected = (list) => list.filter((x) => corrected.has(x.q.slug)).length;
+console.log(splitTable);
+
 // The section goes into README.md (written by score.mjs) just before "How it was scored"
 const both = (arm, f) => cell(arm, [1, 2], f);
 const section = `## Second run
@@ -134,6 +151,11 @@ All three arms again, 45 new incognito chats on 2026-10-22 with the same prompts
 
 ${table}
 Across both runs the record cuts named-neighbour blends from ${both("memory", metrics[2][1])} to ${both("grounded", metrics[2][1])} with the WARNING and ${both("nowarning", metrics[2][1])} without it, and blends from any other subculture from ${both("memory", metrics[3][1])} to ${both("grounded", metrics[3][1])} and ${both("nowarning", metrics[3][1])}. The second run reproduces the first: the record does the work, and the WARNING adds nothing measurable.
+
+**Split by the corrected records.** Suggested on r/RAG: the ${nCorrected} records the model questioned in the first run were corrected afterwards, but every run scores the frozen originals. Both runs; "with the record" counts the two record arms together.
+
+${splitTable}
+With the record in context, ${fromCorrected(recNamed)} of the ${recNamed.length} named-neighbour blends and ${fromCorrected(recOther)} of the ${recOther.length} any-subculture blends come from the ${nCorrected} records that were later corrected. The ${nUnchanged} unchanged records are not simply the easy ones: from memory they pick up a named neighbour's brand more often (${splitCell(["memory"], false, namedBlend)} against ${splitCell(["memory"], true, namedBlend)}). With the record in context, the blending that is left tracks the quality of the record.
 
 Files: [\`answers-run2.md\`](answers-run2.md) (45 answers, verbatim), [\`judgements-run2.json\`](judgements-run2.json), [\`score-run2.mjs\`](score-run2.mjs).
 
