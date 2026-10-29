@@ -172,6 +172,21 @@ app.get("/", (req, res) => {
   res.sendFile(fileURLToPath(new URL("./landing.html", import.meta.url)));
 });
 
+// FREE: side-by-side demo of eval answers from memory vs. with the record; data built from eval/ on first request
+let demo;
+app.get("/demo", (req, res) => {
+  res.sendFile(fileURLToPath(new URL("./demo.html", import.meta.url)));
+});
+app.get("/demo-data.json", async (req, res) => {
+  try {
+    demo ??= (await import("./eval/demo-data.mjs")).demoData();
+    res.json(demo);
+  } catch (err) {
+    console.error("demo data:", err.message);
+    res.status(500).json({ error: "Demo data unavailable" });
+  }
+});
+
 // FREE: icon that registries show next to the listing
 app.get("/favicon.ico", (req, res) => {
   res.sendFile(fileURLToPath(new URL("./favicon.png", import.meta.url)), (err) => err && res.status(404).end());

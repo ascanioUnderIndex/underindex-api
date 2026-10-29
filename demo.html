@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UnderIndex demo: the same outfit question, with and without the record</title>
+<meta name="description" content="Pick a niche fashion aesthetic and compare Claude's answer from memory with its answer when the UnderIndex record is in context. Verbatim answers from the public eval.">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f4ef;
+    --surface: #ffffff;
+    --ink: #17161a;
+    --muted: #5f5c66;
+    --line: #dedad1;
+    --accent: #6b3fd4;
+    --warn-bg: #fff4dc;
+    --warn-ink: #7a4b00;
+    --good: #1f7a4d;
+    --good-bg: #e3f3ea;
+    --bad: #b3261e;
+    --bad-bg: #fbe4e1;
+    --serif: "Instrument Serif", Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111014;
+      --surface: #1a1920;
+      --ink: #efedf3;
+      --muted: #a29fab;
+      --line: #2d2b35;
+      --accent: #a98bff;
+      --warn-bg: #2e2412;
+      --warn-ink: #f2c46b;
+      --good: #5fd39b;
+      --good-bg: #15301f;
+      --bad: #ff8a80;
+      --bad-bg: #3a1a18;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 var(--sans); }
+  a { color: var(--accent); }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+  header { border-bottom: 1px solid var(--line); }
+  .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 600; letter-spacing: .01em; }
+  .brand img { width: 28px; height: 28px; border-radius: 6px; }
+  .nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  .nav ul a { color: var(--muted); text-decoration: none; }
+  .nav ul a:hover { color: var(--ink); }
+  @media (max-width: 640px) { .nav ul li:not(:last-child) { display: none; } }
+
+  .hero { padding: 64px 0 28px; }
+  .eyebrow { font: 500 13px/1 var(--mono); text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+  h1 { font: 400 clamp(40px, 7vw, 72px)/1.04 var(--serif); margin: 16px 0 18px; letter-spacing: -.01em; }
+  h1 em { color: var(--accent); }
+  .lede { font-size: clamp(17px, 2.2vw, 20px); color: var(--muted); max-width: 700px; margin: 0; }
+
+  .picker { display: flex; flex-wrap: wrap; gap: 8px; margin: 32px 0 10px; }
+  .picker button { font: 15px var(--sans); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; cursor: pointer; }
+  .picker button:hover { border-color: var(--accent); }
+  .picker button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .picker button .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--bad); margin-left: 8px; vertical-align: 2px; }
+  .picker-note { font-size: 14px; color: var(--muted); margin: 0 0 28px; }
+  .picker-note .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--bad); margin-right: 6px; vertical-align: 1px; }
+
+  .question { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px; margin-bottom: 16px; }
+  .question .label { font: 500 12px/1 var(--mono); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 8px; }
+  .question p { margin: 0; font: 400 22px/1.3 var(--serif); }
+
+  .score { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; font-size: 15px; margin-bottom: 16px; }
+  .score th, .score td { text-align: left; padding: 12px 18px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .score th { font: 500 12px/1.2 var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+  .score tr:last-child td { border-bottom: 0; }
+  .score td.label { color: var(--muted); width: 34%; }
+  .score tr.mlabel { display: none; }
+  @media (max-width: 600px) {
+    .score th:first-child, .score td.label { display: none; }
+    .score tr.mlabel { display: table-row; }
+    .score tr.mlabel td { color: var(--muted); font-size: 13px; padding-bottom: 0; border-bottom: 0; }
+    .score th, .score td { padding: 10px 14px; width: 50%; }
+  }
+  .score .bad { color: var(--bad); } .score .good { color: var(--good); }
+  .tablewrap { overflow-x: auto; }
+
+  .answers { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+  @media (max-width: 860px) { .answers { grid-template-columns: minmax(0, 1fr); } }
+  .answer { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+  .answer .top { padding: 16px 20px; border-bottom: 1px solid var(--line); }
+  .answer h2 { font: 400 28px/1.1 var(--serif); margin: 0; }
+  .answer .how { font-size: 14px; color: var(--muted); margin: 4px 0 0; }
+  .answer .text { position: relative; padding: 18px 20px; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 15px; line-height: 1.65; max-height: 560px; overflow: hidden; }
+  .answer.open .text { max-height: none; }
+  .answer .text::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 90px; background: linear-gradient(transparent, var(--surface)); }
+  .answer.open .text::after { display: none; }
+  .answer .more { margin: 0 20px 18px; align-self: flex-start; font: 14px var(--sans); color: var(--accent); background: none; border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; cursor: pointer; }
+  mark { color: inherit; border-radius: 4px; padding: 0 2px; }
+  mark.own { background: var(--good-bg); box-shadow: inset 0 -2px 0 var(--good); }
+  mark.rec { background: var(--bad-bg); box-shadow: inset 0 -2px 0 var(--bad); }
+  mark.men { background: transparent; box-shadow: inset 0 -2px 0 var(--muted); }
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 14px; color: var(--muted); margin: 14px 0 0; }
+
+  section { padding: 56px 0; border-top: 1px solid var(--line); margin-top: 56px; }
+  h3.big { font: 400 clamp(30px, 4.5vw, 44px)/1.1 var(--serif); margin: 10px 0 16px; }
+  .sub { color: var(--muted); max-width: 680px; margin: 0 0 24px; }
+  .record { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  @media (max-width: 720px) { .record { grid-template-columns: minmax(0, 1fr); } }
+  .field { padding: 16px 22px; border-bottom: 1px solid var(--line); }
+  .field h4 { margin: 0 0 8px; font: 500 12px/1 var(--mono); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font-size: 14px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); }
+  .warning { grid-column: 1 / -1; padding: 16px 22px; background: var(--warn-bg); color: var(--warn-ink); font-size: 15px; }
+  .warning b { font-family: var(--mono); font-size: 13px; letter-spacing: .06em; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+  .btn { display: inline-block; padding: 12px 20px; border-radius: 999px; font-weight: 600; text-decoration: none; border: 1px solid var(--ink); color: var(--ink); }
+  .btn.primary { background: var(--ink); color: var(--bg); }
+  .method { font-size: 14px; color: var(--muted); max-width: 760px; }
+  .method li { margin-bottom: 6px; }
+  footer { border-top: 1px solid var(--line); padding: 36px 0 52px; color: var(--muted); font-size: 14px; margin-top: 56px; }
+  footer a { color: var(--ink); }
+  .loading { color: var(--muted); padding: 40px 0; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/"><img src="/favicon.ico" alt="">UnderIndex</a>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="#record">The record</a></li>
+      <li><a href="https://github.com/ascanioUnderIndex/underindex-api/tree/main/eval">Eval</a></li>
+      <li><a href="https://github.com/ascanioUnderIndex/underindex-api">GitHub</a></li>
+    </ul>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <div class="eyebrow">Demo · verbatim answers</div>
+    <h1>Same question. <em>Two answers.</em></h1>
+    <p class="lede">We asked Claude to build an outfit in a niche aesthetic twice: once from memory, once with the UnderIndex record pasted above the question. Pick a style and see what changes.</p>
+  </div>
+
+  <div class="picker" id="picker" role="group" aria-label="Aesthetic"></div>
+  <p class="picker-note"><span class="dot"></span>From memory, Claude recommended a brand from the style next door.</p>
+
+  <div id="view"><p class="loading">Loading the answers…</p></div>
+
+  <section id="record">
+    <div class="eyebrow">What Claude was given</div>
+    <h3 class="big" id="record-title">The record</h3>
+    <p class="sub">This is the UnderIndex record as it was during the test. The API returns it as JSON in this shape for any of the 60 subcultures.</p>
+    <div class="record" id="record-card"></div>
+    <div class="ctas" style="margin-top:24px">
+      <a class="btn primary" href="/#catalog">Open 3 records free</a>
+      <a class="btn" href="/#use">Add it to an agent</a>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">How this was made</div>
+    <ul class="method" id="method">
+      <li>Claude Opus 5.5 on claude.ai, a fresh incognito chat for every answer, no web search, 14 October 2026. The answers are copied verbatim.</li>
+      <li>From memory, the question ended with "Answer from your own knowledge; do not search the web." With the record, the record's JSON came first, then the same question.</li>
+      <li>Highlights are automatic: the record's key brands, and brands the dataset files under a neighbouring style. Whether a neighbouring brand is recommended or only mentioned (as history, or to rule it out) was judged by hand.</li>
+      <li>This is the first of two runs. Across both, answers recommending a neighbouring style's brand went from 17 of 30 to 2 of 30. All answers, the scoring scripts and the limits are in the <a href="https://github.com/ascanioUnderIndex/underindex-api/tree/main/eval">public eval</a>.</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Code is MIT licensed. The dataset is not: all rights reserved. Spotted an error in a record? <a href="https://github.com/ascanioUnderIndex/underindex-api/issues">Open an issue</a>.</div>
+</footer>
+
+<script>
+(function () {
+  var data, current;
+  var picker = document.getElementById("picker");
+  var view = document.getElementById("view");
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function esc(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/'/g, "['\u2019]"); }
+  function blends(s) { return s.arms.memory.neighbour.some(function (n) { return n.recommended; }); }
+
+  // Splits the answer into text and <mark> nodes. Brands match case-insensitively on word edges.
+  function highlighted(s, arm) {
+    var a = s.arms[arm];
+    var rec = {};
+    a.neighbour.forEach(function (n) { rec[n.brand] = n; });
+    var terms = s.highlight;
+    var re = new RegExp("(?<![a-z0-9])(" + terms.map(function (t) { return esc(t.a); }).join("|") + ")(?![a-z0-9])", "gi");
+    var box = el("div", "text");
+    var last = 0, m;
+    while ((m = re.exec(a.text))) {
+      var hit = m[0].toLowerCase().replace(/\u2019/g, "'");
+      var t = terms.find(function (x) { return x.a === hit; });
+      if (!t) continue;
+      box.appendChild(document.createTextNode(a.text.slice(last, m.index)));
+      var mk;
+      if (t.kind === "own") {
+        mk = el("mark", "own", m[0]);
+        mk.title = "In the record's key brands";
+      } else {
+        var n = rec[t.brand];
+        mk = el("mark", n && n.recommended ? "rec" : "men", m[0]);
+        mk.dataset.brand = t.brand;
+        mk.title = "The dataset files " + t.brand + " under " + t.style + (n ? (n.recommended ? ". Recommended here: " : ". Only mentioned: ") + n.note : "");
+      }
+      box.appendChild(mk);
+      last = m.index + m[0].length;
+    }
+    box.appendChild(document.createTextNode(a.text.slice(last)));
+    return box;
+  }
+
+  function answerCard(s, arm) {
+    var card = el("article", "answer");
+    var top = el("div", "top");
+    top.appendChild(el("h2", null, arm === "memory" ? "From memory" : "With the UnderIndex record"));
+    top.appendChild(el("p", "how", arm === "memory" ? "Claude on its own, no web search." : "The same question, with the record pasted above it."));
+    card.appendChild(top);
+    card.appendChild(highlighted(s, arm));
+    var more = el("button", "more", "Show the full answer");
+    more.type = "button";
+    more.addEventListener("click", function () {
+      var open = card.classList.toggle("open");
+      more.textContent = open ? "Show less" : "Show the full answer";
+      if (!open) card.scrollIntoView({ block: "nearest" });
+    });
+    card.appendChild(more);
+    return card;
+  }
+
+  function neighbourCell(s, arm) {
+    var td = el("td");
+    var rec = s.arms[arm].neighbour.filter(function (n) { return n.recommended; });
+    if (!rec.length) { td.className = "good"; td.textContent = "None"; return td; }
+    td.className = "bad";
+    rec.forEach(function (n, i) {
+      if (i) td.appendChild(document.createTextNode(", "));
+      var a = el("a", null, n.brand);
+      a.href = "#";
+      a.style.color = "inherit";
+      a.title = "Show it in the answer";
+      a.addEventListener("click", function (e) { e.preventDefault(); jump(arm, n.brand); });
+      td.appendChild(a);
+      td.appendChild(document.createTextNode(" (" + n.style + ")"));
+    });
+    return td;
+  }
+  // Opens the answer and scrolls to the first place the brand is recommended
+  function jump(arm, brand) {
+    var card = document.querySelectorAll(".answer")[arm === "memory" ? 0 : 1];
+    if (!card.classList.contains("open")) card.querySelector(".more").click();
+    var mk = [].find.call(card.querySelectorAll("mark.rec"), function (m) { return m.dataset.brand === brand; });
+    if (!mk) return;
+    mk.scrollIntoView({ block: "center", behavior: "smooth" });
+    mk.animate([{ outline: "2px solid var(--bad)" }, { outline: "2px solid transparent" }], { duration: 1600, iterations: 2 });
+  }
+  // On narrow screens the label moves to its own row above the two values
+  function row(label, a, b) {
+    var frag = document.createDocumentFragment();
+    var top = el("tr", "mlabel");
+    var cell = el("td", null, label);
+    cell.colSpan = 2;
+    top.appendChild(cell);
+    frag.appendChild(top);
+    var tr = el("tr");
+    tr.appendChild(el("td", "label", label));
+    tr.appendChild(a); tr.appendChild(b);
+    frag.appendChild(tr);
+    return frag;
+  }
+  function brandsCell(s, arm) {
+    var own = s.arms[arm].own, total = s.record.KeyBrands.length;
+    var td = el("td", own.length === total ? "good" : null, own.length + " of " + total);
+    if (own.length) td.appendChild(el("span", null, ": " + own.join(", ")));
+    return td;
+  }
+  function yearsCell(s, arm) {
+    var y = s.arms[arm].years;
+    return el("td", y.ok ? "good" : "bad", y.said + (y.ok ? "" : " (off by more than 2 years)"));
+  }
+
+  function chips(title, list) {
+    var f = el("div", "field");
+    f.appendChild(el("h4", null, title));
+    var box = el("div", "chips");
+    (list || []).forEach(function (t) { box.appendChild(el("span", "chip", t)); });
+    f.appendChild(box);
+    return f;
+  }
+
+  function show(slug, push) {
+    var s = data.subcultures.find(function (x) { return x.slug === slug; }) || data.subcultures[0];
+    current = s.slug;
+    picker.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.slug === s.slug)); });
+    if (push) history.replaceState(null, "", "?s=" + encodeURIComponent(s.slug));
+    document.title = "UnderIndex demo: " + s.name + " with and without the record";
+
+    view.textContent = "";
+    var q = el("div", "question");
+    q.appendChild(el("div", "label", "The question"));
+    q.appendChild(el("p", null, s.prompt));
+    view.appendChild(q);
+
+    var wrap = el("div", "tablewrap");
+    var t = el("table", "score");
+    var head = el("tr");
+    ["", "From memory", "With the record"].forEach(function (h) { head.appendChild(el("th", null, h)); });
+    t.appendChild(head);
+    t.appendChild(row("Brands from a neighbouring style, recommended", neighbourCell(s, "memory"), neighbourCell(s, "grounded")));
+    t.appendChild(row("Record's key brands named", brandsCell(s, "memory"), brandsCell(s, "grounded")));
+    t.appendChild(row("Years (record: " + s.record.Years + ")", yearsCell(s, "memory"), yearsCell(s, "grounded")));
+    wrap.appendChild(t);
+    view.appendChild(wrap);
+
+    var answers = el("div", "answers");
+    answers.appendChild(answerCard(s, "memory"));
+    answers.appendChild(answerCard(s, "grounded"));
+    view.appendChild(answers);
+
+    var legend = el("div", "legend");
+    [["own", "In the record's key brands"], ["rec", "Neighbouring style's brand, recommended"], ["men", "Neighbouring style's brand, only mentioned"]].forEach(function (l) {
+      var d = el("span");
+      d.appendChild(el("mark", l[0], "Brand"));
+      d.appendChild(document.createTextNode(" " + l[1]));
+      legend.appendChild(d);
+    });
+    view.appendChild(legend);
+
+    document.getElementById("record-title").textContent = s.name + ", " + s.record.Years;
+    var card = document.getElementById("record-card");
+    card.textContent = "";
+    card.appendChild(chips("Key brands", s.record.KeyBrands));
+    card.appendChild(chips("Iconic items", s.record.IconicItems));
+    card.appendChild(chips("Where to buy", s.record.WhereToBuy));
+    card.appendChild(chips("Price range", [s.record.PriceRange]));
+    if (s.record.Notes) {
+      var w = el("div", "warning");
+      w.appendChild(el("b", null, "WARNING"));
+      w.appendChild(document.createTextNode(" " + String(s.record.Notes).replace(/^WARNING:\s*/, "")));
+      card.appendChild(w);
+    }
+  }
+
+  fetch("/demo-data.json").then(function (r) { return r.json(); }).then(function (d) {
+    data = d;
+    d.subcultures.forEach(function (s) {
+      var b = el("button", null, s.name);
+      b.type = "button";
+      b.dataset.slug = s.slug;
+      if (blends(s)) { b.appendChild(el("span", "dot")); b.title = "From memory, borrowed a brand from " + s.neighbours.join(" / "); }
+      b.addEventListener("click", function () { show(s.slug, true); });
+      picker.appendChild(b);
+    });
+    show(new URLSearchParams(location.search).get("s") || "goth-ninja", false);
+  }).catch(function () {
+    view.textContent = "";
+    view.appendChild(el("p", "loading", "The answers didn't load. They are also on GitHub, in eval/answers/."));
+  });
+})();
+</script>
+</body>
+</html>
