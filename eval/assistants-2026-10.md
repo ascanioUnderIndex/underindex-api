@@ -19,7 +19,7 @@ Request: "Build me a {Name} outfit". The Mens tab was used for menswear styles a
 | Acubi | Hyein Seo, Thug Club, Acubi Club | 0 of 112 | Courrèges 22, Acne Studios 19, Madewell 13 |
 | Opium | Rick Owens, Balenciaga, Alyx, Givenchy | n/a | refused twice |
 
-The catalog does have the right brands. Asked for them by name, Daydream returned Brunello Cucinelli (11 products), KAPITAL (10) and Undercover (2). The failing step is the one from aesthetic to brand. "Build me an Opium outfit" got the reply "I'm unable to offer opinions or advice on your questions", most likely a drug filter, although Opium is the aesthetic of Playboi Carti's label.
+The catalog does have the right brands. Asked for them by name, Daydream returned Brunello Cucinelli (11 products), KAPITAL (10) and Undercover (2). So the catalog isn't the limit. From the outside I can't tell which step fails inside the agent (query rewriting, retrieval or ranking); the step from aesthetic to brand is the likely one, not a measured result. "Build me an Opium outfit" got the reply "I'm unable to offer opinions or advice on your questions", most likely a drug filter, although Opium is the aesthetic of Playboi Carti's label.
 
 ## Encore (AI search for secondhand)
 
