@@ -172,6 +172,11 @@ app.get("/", (req, res) => {
   res.sendFile(fileURLToPath(new URL("./landing.html", import.meta.url)));
 });
 
+// FREE: how the records are made
+app.get("/method", (req, res) => {
+  res.sendFile(fileURLToPath(new URL("./method.html", import.meta.url)));
+});
+
 // FREE: side-by-side demo of eval answers from memory vs. with the record; data built from eval/ on first request
 let demo;
 app.get("/demo", (req, res) => {

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How the records are made · UnderIndex</title>
+<meta name="description" content="What an UnderIndex record contains, what 'verified' means here, how records get corrected, and what is still missing.">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f4ef;
+    --surface: #ffffff;
+    --ink: #17161a;
+    --muted: #5f5c66;
+    --line: #dedad1;
+    --accent: #6b3fd4;
+    --serif: "Instrument Serif", Georgia, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111014;
+      --surface: #1a1920;
+      --ink: #efedf3;
+      --muted: #a29fab;
+      --line: #2d2b35;
+      --accent: #a98bff;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.65 var(--sans); }
+  a { color: var(--accent); }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+  header { border-bottom: 1px solid var(--line); }
+  .nav { max-width: 1040px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 600; letter-spacing: .01em; }
+  .brand img { width: 28px; height: 28px; border-radius: 6px; }
+  .nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  .nav ul a { color: var(--muted); text-decoration: none; }
+  .nav ul a:hover { color: var(--ink); }
+  .hero { padding: 64px 0 20px; }
+  .eyebrow { font: 500 13px/1 var(--mono); text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+  h1 { font: 400 clamp(40px, 7vw, 68px)/1.04 var(--serif); margin: 16px 0 16px; letter-spacing: -.01em; }
+  .lede { font-size: clamp(18px, 2.2vw, 20px); color: var(--muted); margin: 0; }
+  section { padding: 36px 0 8px; }
+  h2 { font: 400 clamp(28px, 4vw, 36px)/1.15 var(--serif); margin: 0 0 12px; }
+  p { margin: 0 0 14px; }
+  ul.plain { margin: 0 0 14px; padding-left: 20px; }
+  ul.plain li { margin-bottom: 8px; }
+  table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); font-size: 15px; margin-bottom: 14px; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font: 500 12px/1.2 var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+  td:first-child { font: 14px/1.5 var(--mono); width: 32%; }
+  @media (max-width: 600px) { th, td { padding: 10px; } td:first-child { font-size: 12px; } }
+  tr:last-child td { border-bottom: 0; }
+  code { font: 14px var(--mono); }
+  footer { border-top: 1px solid var(--line); padding: 32px 0 48px; color: var(--muted); font-size: 14px; margin-top: 48px; }
+  footer a { color: var(--ink); }
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <a class="brand" href="/"><img src="/favicon.ico" alt="">UnderIndex</a>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/demo">Demo</a></li>
+      <li><a href="https://github.com/ascanioUnderIndex/underindex-api/tree/main/eval">Eval</a></li>
+    </ul>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <div class="eyebrow">Method</div>
+    <h1>How the records are made.</h1>
+    <p class="lede">What a record contains, what "verified" means here, how errors get fixed, and what is still missing.</p>
+  </div>
+
+  <section>
+    <h2>Who makes them</h2>
+    <p>UnderIndex is built by Ascanio, an independent developer in Italy. Records are researched by hand. If you find an error, <a href="https://github.com/ascanioUnderIndex/underindex-api/issues">open an issue on GitHub</a>.</p>
+  </section>
+
+  <section>
+    <h2>What's in a record</h2>
+    <table>
+      <thead><tr><th>Field</th><th>What it holds</th></tr></thead>
+      <tbody>
+        <tr><td>Years</td><td>The period the style belongs to</td></tr>
+        <tr><td>Description</td><td>One line on what the style is</td></tr>
+        <tr><td>KeyBrands</td><td>A short list of the brands that define it</td></tr>
+        <tr><td>IconicItems</td><td>The pieces it is recognised by</td></tr>
+        <tr><td>MusicGenre, Artists, VideoGames</td><td>The culture around it</td></tr>
+        <tr><td>WhereToBuy</td><td>Shops and resale sites where it turns up</td></tr>
+        <tr><td>PriceRange</td><td>A rough budget for the look</td></tr>
+        <tr><td>Notes</td><td>A <code>WARNING</code> on where the style ends and what it must not be confused with</td></tr>
+      </tbody>
+    </table>
+    <p>The <code>WARNING</code> is there because the usual error isn't an invented brand. It's a real brand from the style next door, so the answer still sounds right.</p>
+  </section>
+
+  <section>
+    <h2>What "verified" means here</h2>
+    <p>It means a person researched the record by hand and that it can be challenged and corrected in public. It doesn't mean more than that:</p>
+    <ul class="plain">
+      <li>No third party has certified the data.</li>
+      <li>Sources aren't published field by field yet, so you can't trace a single brand back to a citation.</li>
+      <li>15 of the 60 records have been through the public review described below. The other 45 haven't.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>How errors get found and fixed</h2>
+    <p>In the <a href="https://github.com/ascanioUnderIndex/underindex-api/tree/main/eval">public eval</a>, Claude answered outfit questions on 15 subcultures with the record in context, and it questioned 9 of the 15 records. Each point was checked against web sources, and the 9 records were corrected on 14 October 2026 (dataset version <code>9ab6258f9c51</code>):</p>
+    <ul class="plain">
+      <li><b>Acubi Style</b> adds Acubi Club and moves to $150 - $800.</li>
+      <li><b>Opium</b> moves to $800 - $5000.</li>
+      <li><b>Ura-Hara</b> starts in 1993, replaces Number (N)ine with Goodenough and Neighborhood, drops Shenmue and moves to $400 - $2000.</li>
+      <li><b>Health Goth</b> credits the 2013 Portland Facebook page and drops Vaporwave.</li>
+      <li><b>Indie Sleaze</b> starts in 2006 and swaps The RealReal for eBay.</li>
+      <li><b>Whimsigoth</b> drops American McGee's Alice.</li>
+      <li><b>Frutiger Aero</b> swaps Mirror's Edge for Wii Sports.</li>
+      <li><b>Terrace Casuals</b> swaps The Jam for The Farm.</li>
+      <li><b>Gyaru</b> labels Liz Lisa as Hime Gyaru and MA*RS as Agejo.</li>
+    </ul>
+    <p>A model is a useful reviewer but not a sufficient one. When errors were planted in records on purpose, Claude called out 13 of 15 wrong dates and 10 of 15 brands from neighbouring scenes, but plausible wrong brands still reached the outfit in 4 of 15 answers. The data has to be right at the source.</p>
+  </section>
+
+  <section>
+    <h2>Versions</h2>
+    <p>Every response carries a <code>dataset_version</code>, a hash of the published records. It changes whenever a record changes, so you can cache safely and see when something moved.</p>
+  </section>
+
+  <section>
+    <h2>Limits</h2>
+    <ul class="plain">
+      <li>Boundaries between styles are judgement calls. Fred Perry was worn by terrace casuals, and Dr. Martens are common across goth styles, even where the dataset files them elsewhere.</li>
+      <li>Matching a record isn't the same as being right. In the eval the record is the reference, and the corrections above show it had weak points.</li>
+      <li>Styles keep moving, so a record describes the style as researched, and it can go out of date.</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Code is MIT licensed. The dataset is not: all rights reserved. <a href="/demo">See the demo</a> or <a href="/">go back to the home page</a>.</div>
+</footer>
+</body>
+</html>
