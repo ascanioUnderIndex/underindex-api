@@ -114,6 +114,15 @@ app.get("/api/sample", (req, res) => {
 // FREE, capped: any record without a wallet, FREE_PER_DAY per client per UTC day. A separate route on purpose:
 // registries probe the paid route and expect a 402 there, so the paid route never answers for free.
 const freeQuota = createFreeQuota({ limit: FREE_PER_DAY });
+// For the logs only: the crawler's name when the User-Agent declares one, otherwise "other". No IPs are logged.
+const BOT = /(googlebot|bingbot|applebot|duckduckbot|yandexbot|gptbot|oai-searchbot|chatgpt-user|claudebot|claude-user|perplexitybot|ccbot|bytespider|amazonbot|meta-externalagent|[a-z-]*(?:bot|crawler|spider))/i;
+const agentTag = (req) => (BOT.exec(req.get("user-agent") || "")?.[1] ?? "other").toLowerCase();
+
+// FREE: tells well-behaved crawlers to leave the free records to people (the landing links to them)
+app.get("/robots.txt", (req, res) => {
+  res.type("text/plain").send("User-agent: *\nDisallow: /api/free/\n");
+});
+
 app.get("/api/free/subculture/:name", (req, res) => {
   if (!dataset.ready) return res.status(503).json({ error: "Dataset loading, retry shortly" });
   const entry = dataset.find(req.params.name);
@@ -136,7 +145,7 @@ app.get("/api/free/subculture/:name", (req, res) => {
       price: PRICE,
     });
   }
-  console.log(`free: ${req.params.name} (${take.remaining} left, ${freeQuota.clientsToday()} clients today, key ${cfIp ? "cf" : "ip"})`);
+  console.log(`free: ${req.params.name} (${take.remaining} left, ${freeQuota.clientsToday()} clients today, key ${cfIp ? "cf" : "ip"}, ua ${agentTag(req)})`);
   res.json({ ...entry, dataset_version: dataset.version, free_remaining_today: take.remaining });
 });
 
@@ -172,14 +181,23 @@ app.get("/", (req, res) => {
   res.sendFile(fileURLToPath(new URL("./landing.html", import.meta.url)));
 });
 
+// One line per page view, to see whether outreach brings anyone: the page, the referring site, the crawler tag.
+const logPage = (req, page) => {
+  let ref = "none";
+  try { ref = new URL(req.get("referer")).hostname; } catch {}
+  console.log(`page: ${page}${req.query.s ? `?s=${String(req.query.s).slice(0, 40)}` : ""} (ref ${ref}, ua ${agentTag(req)})`);
+};
+
 // FREE: how the records are made
 app.get("/method", (req, res) => {
+  logPage(req, "method");
   res.sendFile(fileURLToPath(new URL("./method.html", import.meta.url)));
 });
 
 // FREE: side-by-side demo of eval answers from memory vs. with the record; data built from eval/ on first request
 let demo;
 app.get("/demo", (req, res) => {
+  logPage(req, "demo");
   res.sendFile(fileURLToPath(new URL("./demo.html", import.meta.url)));
 });
 app.get("/demo-data.json", async (req, res) => {

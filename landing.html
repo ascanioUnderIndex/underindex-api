@@ -344,6 +344,7 @@ console.log(await res.json());</code></pre>
       var c = el("a", "chip", s.name);
       if (s.years) c.appendChild(el("span", null, s.years));
       c.href = "/api/free/subculture/" + encodeURIComponent(s.slug);
+      c.rel = "nofollow";
       c.title = s.slug + " (opens the free record, 3 a day)";
       box.appendChild(c);
     });
